@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+}
+
+.container {
+  height: 100vh;
+}
+
+.grid_container {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'top_nav' 'admin_panel';
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 0;
+}
+
+.top_nav {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: top_nav;
+  background: #f3f3f3;
+  height: 80px;
+  border-bottom: 1px solid #cecece;
+}
+
+.admin_panel {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: admin_panel;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'left_nav main_section right_nav';
+  grid-auto-columns: 100px 1fr 300px;
+}
+
+.admin_panel .left_nav {
+  margin-top: -82px;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: left_nav;
+  background-color: #f16311;
+  height: 100vh;
+}
+
+.admin_panel .main_section {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: main_section;
+  background-color: #f3f3f3;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'time_date notes_box notes_box' 'something_box_1 something_box_2 something_box_3';
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  padding: 20px;
+  grid-gap: 10px;
+}
+
+.admin_panel .main_section .time_date {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: time_date;
+  background-color: #d8d8d8;
+}
+
+.admin_panel .main_section .notes_box {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: notes_box;
+  background-color: #d8d8d8;
+}
+
+.admin_panel .main_section .something_box_1 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: something_box_1;
+  background-color: #d8d8d8;
+}
+
+.admin_panel .main_section .something_box_2 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: something_box_2;
+  background-color: #d8d8d8;
+}
+
+.admin_panel .main_section .something_box_3 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: something_box_3;
+  background-color: #d8d8d8;
+}
+
+.admin_panel .right_nav {
+  margin-top: -82px;
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: right_nav;
+  background-color: #d8d8d8;
+}
+/*# sourceMappingURL=style.css.map */

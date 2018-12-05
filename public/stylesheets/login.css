@@ -1,0 +1,105 @@
+body {
+    background: linear-gradient(to right, #f12711, #f5af19);
+}
+  
+.container {
+    border: 2px solid white;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Poppins', sans-serif;
+    width: 960px;
+    height: 90%;
+    border: none;
+}
+.wrapper {
+    display: grid;
+    grid-template-areas: 'logo form_main'
+    ;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 100px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.register_wrapper{
+    margin-top: 70px;
+}
+.login_wrapper{
+    margin-top: 140px;
+}
+
+.logo{
+    grid-area: logo;
+    border: 2px solid white;
+}
+.form_main{
+    grid-area: form_main;
+}
+
+h3{
+    color: black;
+}
+  
+.register_logo{
+    margin-top: 70px;
+}
+  
+form {
+    text-align: center;
+}
+  
+input {
+    background-color: #EDEAE9;
+    font-size: 15px;
+    line-height: 1.5;
+    height: 50px;
+    border-radius: 20px;
+    padding: 0 15px 0 50px;
+    width: 250px;
+    outline: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 20px;
+}
+
+.login-btn {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    width: 50%;
+    height: 50px;
+    border-radius: 20px;
+    background: #57b846;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+  
+a {
+    color: black;
+}
+
+.login_icon{
+    position: relative;
+    left: 40px;
+}
+
+@media (min-width:1280px) and (max-width:1380px){
+    .wrapper{
+        padding: 30px;
+        margin-top: 0px;
+    }
+    .logo{
+        text-align: center;
+    }
+    .login_wrapper{
+        margin-top: 80px;
+    }
+    .register_wrapper{
+        margin-top: 15px;
+    }
+}
