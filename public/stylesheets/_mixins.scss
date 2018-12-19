@@ -1,0 +1,65 @@
+// *************** MIXINS ***************
+
+@mixin button{
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}
+@mixin profileBtnStyle{
+    padding: 10px;
+    border-bottom: 1px solid #cecece;
+    box-shadow: 0px 0px 10px #cecece;
+}
+@mixin panelBox{
+    background: #fff;
+    border-radius: 5px;
+    // background: transparent;
+    box-shadow: 0px 0px 10px rgb(216, 216, 216);
+    border: 1px solid rgba(212, 212, 212, 0.514);
+}
+@mixin importanceNote{
+    padding:  1px 20px;
+    color: white;
+    border-radius: 30px;
+    font-size: 12px;
+}
+@mixin boxHeaderSection{
+    padding: 10px;
+    background: #f0f0f0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    p{
+        font-weight: 600;
+        font-size: 20px;
+        color: $boxHeaderColor;
+    }
+}
+@mixin fadeBox{
+    animation: fadeBox;
+    animation-delay: 1s;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    transform: scale(0);
+
+    @keyframes fadeBox {
+        0%{
+            transform: scale(0);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }
+}
+@mixin greenBtn{
+    @include button();
+    padding: 0.75rem 2rem;
+    background: $buttonGreen;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s;
+    &:hover{
+        box-shadow: 0 0 10px $boxHeaderColor;
+    }
+}

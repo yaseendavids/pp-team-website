@@ -1,0 +1,34 @@
+<!-- TOP NAVIGATION BAR -->
+<div class="top_nav">
+    <div class="peach_logo">
+        <img class="peach_logo_img" src="/images/Peach Payments Horizontal.png" alt="">
+    </div>
+    <!-- PROFILE SECTION -->
+    <div class="profile_section">
+        <!-- PROFILE BUTTON -->
+        <div class="profile_btn">
+            <!-- PROFILE ICON -->
+            <i class="fas fa-user-circle profile_icon"></i>
+            <!-- PROFILE SECTION DROPDOWN -->
+            <div class="profile_dropdown">
+                <!-- PROFILE BUTTON -->
+                <a href="">
+                    <div class="profile_view">
+                        <i class="fas fa-user-circle view"></i>
+                        <% var username = user.username.replace("-", " ") %>
+                        <p class="profile_username"><%= username %></p>
+                        <br>
+                        <span class="view_text">View Profile</span>
+                    </div>
+                </a>
+                <!-- LOGOUT BUTTON -->
+                <a href="/users/login" class="logout_btn">
+                    <div class="logout_box">
+                        <span>Logout</span>
+                        <i class="fas fa-sign-out-alt sign_out"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

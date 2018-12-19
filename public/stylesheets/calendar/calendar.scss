@@ -1,0 +1,66 @@
+@import "../mixins";
+@import "../variables";
+@import "../modals";
+
+.admin_panel{
+
+    .add_new_date{
+        @include greenBtn();
+        @include fadeBox();
+        animation-delay: 1.5s;
+        // margin-top: 50px;
+        position: absolute;
+        left: 400px;
+        top: 97px;
+        z-index: 1000;
+    }
+    
+    .main_section{
+        grid-area: main_section;
+        padding: 10px;
+        display: grid;
+        grid-template-areas: 'calendar calendar_form '
+        ;
+        grid-template-columns: 1050px 1fr;
+        grid-gap: 10px;
+
+        #calendar{
+            grid-area: calendar;
+            @include panelBox();
+            padding: 10px;
+            width: 1022px;
+            @include fadeBox();
+        }
+        .calendar_form{
+            grid-area: calendar_form;
+            @include panelBox();
+            float: left;
+            padding: 5px;
+            @include fadeBox();
+            animation-delay: 1.5s;
+            text-align: center;
+
+            .calendar_days{
+                table{
+                    thead{
+                        tr{
+                            background: #cecece;
+                            th{
+                                text-align: left;
+                                padding: 5px;
+                            }
+                        }
+                    }
+                    tbody{
+                        border: 1px solid #cecece;
+                        tr{
+                            padding: 5px;
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

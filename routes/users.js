@@ -98,7 +98,6 @@ router.post('/login', function(req, res, next){
 
 });
 
-
 // Logout Proccess
 router.get('/logout', function(req, res){
   req.logout();

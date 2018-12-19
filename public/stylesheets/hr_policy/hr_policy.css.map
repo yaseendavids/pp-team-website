@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAEI,YAFQ,CAER,aAAa,CAAA;EACT,SAAS,EAAE,YAAY;EACvB,OAAO,EAAE,IAAI;CAShB",
+    "sources": [
+        "hr_policy.scss",
+        "../_mixins.scss",
+        "../_variables.scss"
+    ],
+    "names": [],
+    "file": "hr_policy.css"
+}

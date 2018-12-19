@@ -1,7 +1,9 @@
 const LocalStrategy = require('passport-local').Strategy;
+const findOrCreate = require('mongoose-findorcreate');
 const User = require('../models/user');
 const config = require('../config/database');
 const bcrypt = require('bcryptjs');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 module.exports = function(passport){
 
@@ -30,7 +32,7 @@ module.exports = function(passport){
                 }
                 else{
                     return done(null, false, {
-                        message: "Incorrect Password"
+                        message: "Incorrect Username or Password"
                     });
                 }
             });

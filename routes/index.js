@@ -8,9 +8,14 @@ var expressValidator = require('express-validator');
 var request = require('request');
 var passport = require('passport');
 var back = require('express-back');
+var fs = require("fs");
 
 // User model
 var User = require('../models/user');
+// Notes model
+var Notes = require('../models/notes');
+// Calendar Model
+var Calendar = require('../models/calendar');
 
 // Express session Middleware
 router.use(session({
@@ -63,15 +68,157 @@ router.get('*', function(req, res, next){
   next();
 });
 
+// ********************************** ROUTING **********************************
 
-/* GET home page. */
+// ************** GET home page **************
 router.get('/', ensureAuthenticated, function(req, res, next) {
-  
-  res.render('index');
 
+  let errors = req.validationErrors();
+
+  Notes.find({}, function(err, notes){
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.render('index', {
+        notes: notes,
+        errors: errors
+      })
+    }
+  }).sort(
+    { "_id":-1 }
+  )
 });
 
-// Access control
+// ************** ADD NOTE CHECK **************
+router.get('/completed/:id', ensureAuthenticated, function(req, res, next){
+
+  var note = {};
+  note.completed = 'true';
+
+  let query = {_id:req.params.id};
+
+  Notes.update(query, note , function(err){
+    if (err) {
+      console.log(err)
+    }
+    else{
+      req.flash("success",  "Task completed");
+      res.redirect('/');
+    }
+  })
+});
+
+// ************** REMOVE  NOTE CHECK **************
+router.get('/redo-note/:id', ensureAuthenticated, function(req, res, next){
+
+  var note = {};
+  note.completed = 'false';
+  let query = {_id:req.params.id};
+
+  Notes.update(query, note , function(err){
+    if (err) {
+      console.log(err)
+    }
+    else{
+      res.redirect('/');
+    }
+  })
+});
+
+// ************** DELETE NOTE **************
+router.delete('/delete-note/:id', ensureAuthenticated, function(req, res, next){
+
+  let query = {_id:req.params.id};
+
+  Notes.findById(req.params.id, function(err, note){
+    if (err) {
+      console.log(err);
+      return;
+    }
+    else{
+      Notes.remove(query, function(err){
+        if (err){
+          console.log(err);
+          return;
+        }
+        req.flash('success', "Task Deleted");
+        res.send("Successfully deleted Note");
+      })
+    }
+  });
+})
+
+// ************** POST NEW NOTE **************
+router.post('/add_new_note', ensureAuthenticated, function(req, res, next){
+
+  var note = new Notes();
+
+  note.username = req.body.username;
+  note.note = req.body.note;
+  note.importance = req.body.importance;
+  note.completed = req.body.completed;
+
+  note.save(function(err){
+    if (err){
+      console.log(err);
+    }
+    else{
+      req.flash('success', 'New Task Added');
+      res.redirect('/');
+    }
+  })
+});
+
+// ************** GET Calender PAGE **************
+router.get('/calendar', ensureAuthenticated, function(req, res, next){
+
+  let errors = req.validationErrors();
+
+  Calendar.find({}, function(err, dates){
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.render('calendar', {
+        dates: dates,
+        errors: errors,
+        header: "Calendar",
+      })
+    }
+  })
+});
+
+// ************** POST CALENDAR DATE **************
+router.post('/calendar-form', function(req, res, next){
+
+  var date = new Calendar();
+
+  date.title = req.body.title + " - " + req.body.username;
+  date.start = req.body.startDate;
+  date.end = req.body.endDate;
+  date.color = req.body.color;
+
+  date.save(function(err){
+    if (err){
+      console.log(err);
+    }
+    else{
+      req.flash('success', 'New Calendar Date Added');
+      res.redirect('/calendar');
+    }
+  })
+})
+
+// ************** GET Hr Policy PAGE **************
+router.get('/hr-policy', ensureAuthenticated, function(req, res, next){
+
+  res.render('hr_policy', {
+    header: "HR Policy"
+  });
+});
+ 
+// ************** Access control **************
 function ensureAuthenticated(req, res, next){
   if (req.isAuthenticated()){
     return next();
@@ -83,4 +230,3 @@ function ensureAuthenticated(req, res, next){
 }
 
 module.exports = router;
-

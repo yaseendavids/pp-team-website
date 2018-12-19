@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  height: 100vh;
+}
+
+.grid_container {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'top_nav' 'admin_panel';
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 0;
+}
+
+.top_nav {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: top_nav;
+  background: #f3f3f3;
+  height: 80px;
+  width: 100%;
+  border-bottom: 1px solid #cecece;
+  z-index: 1000;
+  position: fixed;
+}
+
+.top_nav .peach_logo {
+  float: left;
+  margin-top: 10px;
+  height: 60px;
+}
+
+.top_nav .peach_logo .peach_logo_img {
+  width: 350px;
+  height: 100%;
+}
+
+.top_nav .profile_section {
+  float: right;
+  padding: 5px;
+  height: 60px;
+  margin-top: 5px;
+  width: 50px;
+  margin-right: 120px;
+}
+
+.top_nav .profile_section .profile_btn {
+  float: right;
+  margin-top: 10px;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown {
+  display: none;
+  z-index: 1000000;
+  width: 230px;
+  height: 140px;
+  background: #fff;
+  position: absolute;
+  border-radius: 5px;
+  top: 70px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 10px 10px #cecece;
+          box-shadow: 0px 10px 10px #cecece;
+  margin-left: -200px;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .profile_view {
+  height: 60px;
+  padding: 10px;
+  border-bottom: 1px solid #cecece;
+  -webkit-box-shadow: 0px 0px 10px #cecece;
+          box-shadow: 0px 0px 10px #cecece;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .profile_view:hover {
+  background: #cecece;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .profile_view .view_text {
+  float: left;
+  margin-left: 15px;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .profile_view .view {
+  float: left;
+  font-size: 50px;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .profile_view .profile_username {
+  text-transform: capitalize;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .profile_view p {
+  color: blue;
+  float: left;
+  margin-left: 15px;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .profile_view a {
+  float: left;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .logout_btn {
+  text-decoration: none;
+  color: #333;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .logout_btn .logout_box {
+  padding: 10px;
+  border-bottom: 1px solid #cecece;
+  -webkit-box-shadow: 0px 0px 10px #cecece;
+          box-shadow: 0px 0px 10px #cecece;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .logout_btn .logout_box .sign_out {
+  margin-left: 5px;
+}
+
+.top_nav .profile_section .profile_btn .profile_dropdown .logout_btn .logout_box:hover {
+  background: #cecece;
+}
+
+.top_nav .profile_section .profile_btn .profile_icon {
+  text-align: center;
+  float: right;
+  font-size: 40px;
+  color: #333;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.top_nav .profile_section .profile_btn .profile_icon:hover {
+  color: #555555;
+}
+
+.admin_panel {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: admin_panel;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'left_nav main_section right_nav';
+  grid-auto-columns: 180px 1fr 100px;
+  margin-top: 80px;
+}
+
+.admin_panel .left_nav {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: left_nav;
+  background: #f16311;
+  height: 100vh;
+  position: fixed;
+}
+
+.admin_panel .left_nav .nav_nav {
+  text-align: center;
+  background: #d15107;
+  color: white;
+  padding: 20px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.admin_panel .left_nav .second_link {
+  margin-top: 10px;
+}
+
+.admin_panel .left_nav .left_nav_links {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'left_nav_icon left_nav_link';
+  -ms-grid-columns: 40% 1fr;
+      grid-template-columns: 40% 1fr;
+  grid-gap: 5px;
+  color: #333;
+  text-decoration: none;
+}
+
+.admin_panel .left_nav .left_nav_links:hover {
+  background: #d15107;
+  color: #fff;
+}
+
+.admin_panel .left_nav .left_nav_links .left_nav_icon {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: left_nav_icon;
+  text-align: center;
+  font-size: 30px;
+}
+
+.admin_panel .left_nav .left_nav_links .left_nav_link {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: left_nav_link;
+  font-size: 16px;
+}
+
+.admin_panel .left_nav .left_nav_links .left_nav_link p {
+  margin-top: 10px;
+}
+
+.admin_panel .main_section {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: main_section;
+  padding: 10px;
+}
+
+.admin_panel .right_nav {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: right_nav;
+  border-left: 1px solid #d8d8d8;
+  background: #dedede;
+  width: 100px;
+  position: fixed;
+  right: 0;
+  height: 100vh;
+}
+/*# sourceMappingURL=template.css.map */

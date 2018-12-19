@@ -1,0 +1,18 @@
+@import "../mixins";
+@import "../variables";
+
+.admin_panel{
+    
+    .main_section{
+        grid-area: main_section;
+        padding: 10px;
+        // display: grid;
+        // grid-template-areas: 'time_date calender_date'
+        // ;
+        // grid-template-columns: 1fr 60%;
+        // padding: 20px;
+        // grid-gap: 10px;
+
+        // ***************** ADD your code here *****************
+    }
+}

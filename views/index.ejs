@@ -3,39 +3,149 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Peach Team</title>
+    <title>Peach Payments</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />
-    <!-- <script src="main.js"></script> -->
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/templates/template.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/home/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/alert.css" />
+    <!-- FAVICON -->
+    <link rel="icon" type="favicon" href="https://support.peachpayments.com/hc/en-us/article_attachments/200826988/Peach_Icon.png">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
 
+    <!-- CONTAINER -->
     <div class="container">
 
+        <!-- GRID CONTAINER -->
         <div class="grid_container">
 
-            <div class="top_nav"></div>
+            <%- include('./modals/task_modal', locals) %>
 
+            <!-- This is the Message -->
+            <%- messages('message', locals) %>
+            <!-- This is the Message -->
+            <% if (errors) { %>
+                <!-- <% console.log(errors) %> -->
+                <% errors.forEach(function (error){ %>
+                    <div class="alert alert-login alert-danger">
+                        <%= error.msg %>
+                    </div>
+                <% }) %>
+            <% } %>
+
+             <!-- <div class="tasks_number_main">
+                        <% for (let i2 = 0; i2 < notes.length; i2++) {%>
+                            <% if (notes[i2].username == user.username) { %>
+                                <p><%= notes.length %></p>
+                                <% break %>
+                            <% } %>
+                        <% } %>
+                    </div> -->
+
+            <!-- TOP NAVBAR -->
+            <%- include('./templates/top_nav', locals) %>
+
+            <!-- ADMIN MAIN -->
             <div class="admin_panel">
 
-                <div class="left_nav"></div>
+                <!-- LEFT NAVBAR -->
+                <%- include('./templates/left_nav', locals) %>
 
+                <!-- MAIN SECTION -->
                 <div class="main_section">
-                    <div class="time_date"></div>
-                    <div class="notes_box"></div>
 
-                    <div class="something_box_1"></div>
-                    <div class="something_box_2"></div>
-                    <div class="something_box_3"></div>
+                    <!-- WEATHER MAIN -->
+                    <div class="weather_main">
+                        <!-- WEATHER HEADER -->
+                        <div class="weather_header">
+                            <p>Weather</p>
+                        </div>
+                        <!-- WEATHER CONTENT -->
+                        <div class="weather_content">
+                            <!-- WEATHER SUBSECTION -->
+                            <div class="weather_sub">
+                                <p class="weather_temp_text"></p>
+                                <span class="weather_icon"></span>
+                                <p class="weather_condition"></p>
+                            </div>
+                            <!-- TODAY'S CALENDER -->
+                            <div class="today_calender">
+                                <p class="today_day"></p>
+                                <p class="today_date"></p>
+                            </div>
+                        </div>
+                        <!-- WEATHER ADDITIONAL -->
+                        <div class="weather_additional">
+                            <p class="wind_speed">Wind <span class="wind_text"></span></p>
+                            <p class="humidity">Humidity <span class="humidity_text"></span></p>
+                            <p class="cloud_cover">Cloud <span class="cloud_text"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="notes_main">
+                        <div class="notes_header">
+                            <p>Todo List</p>
+                            <button data-modal="modal_1" class="notes_btn modal_btn"><i class="fas fa-plus"></i> Add task</button>
+                        </div>
+                        <div class="notes_content">
+                            <% for (let i = 0; i < notes.length; i++) { %>
+                                <% if (notes[i].username != user.username) { %>
+                                    <!-- <p id="notes_length"></p> -->
+                                <% } else { %>
+                                    <% if (notes[i].username == user.username) { %>
+                                        <% if (notes[i].completed == 'true') { %>
+                                            <p class="notes_text visible">
+                                                <a href="/redo-note/<%=  notes[i].id %>"><i class="fas fa-check note_complete note_icon"></i></a>
+                                                <%= notes[i].note %><span class="note_label_wrapper"><span class="<%= notes[i].importance %> note_label"><%= notes[i].importance %></span></span>
+                                                <span class="delete_note completed_task" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
+                                            </p>
+                                        <% } else { %>
+                                            <p class="notes_text visible">
+                                                <a href="/completed/<%=  notes[i].id %>"><i class="fas fa-check note_check note_icon"></i></a>
+                                                <%= notes[i].note %><span class="note_label_wrapper"><span class="<%= notes[i].importance %> note_label"><%= notes[i].importance %></span></span>
+                                                <span class="delete_note" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
+                                            </p>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="news_main">
+                        <div class="news_header">
+                            <p>Latest News</p>
+                        </div>
+                        <div class="news_content"></div>
+                    </div>
+
                 </div>
 
-                <div class="right_nav"></div>
+                <!-- RIGHT NAVBAR -->
+                <%- include('./templates/right_nav', locals) %>
 
             </div>
 
         </div>
 
     </div>
+
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/script.js"></script>
+    <script src="/javascripts/home.js"></script>
+    <script src="/javascripts/modals.js"></script>
+    <script>
+
+        $(".home_link").css('background','#d15107');
+        $(".home_link").css('color','white');
+
+    </script>
     
 </body>
 </html>

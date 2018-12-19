@@ -1,0 +1,325 @@
+.modal_wrapper {
+  background: -webkit-gradient(linear, left top, right top, from(#f1271186), to(#f5af1981));
+  background: linear-gradient(to right, #f1271186, #f5af1981);
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  overflow: hidden;
+  z-index: 10000;
+}
+
+.modal_wrapper .modal_main {
+  padding: 10px;
+  background: white;
+  height: 700px;
+  width: 420px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid #cecece;
+  border-radius: 10px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.modal_wrapper .modal_main .modal_header {
+  position: relative;
+  text-align: center;
+}
+
+.modal_wrapper .modal_main .modal_header h3 {
+  padding: 15px;
+  font-size: 22px;
+  font-weight: lighter;
+  color: #555;
+  font-weight: 600;
+  border-bottom: 1px solid #cecece;
+}
+
+.modal_wrapper .modal_main .modal_header i {
+  margin-left: 10px;
+}
+
+.modal_wrapper .modal_main .modal_header .close_modal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal_2 .modal_main, .modal_1 .modal_main {
+  position: relative;
+}
+
+.modal_2 .modal_main .modal_form, .modal_1 .modal_main .modal_form {
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+}
+
+.modal_2 .modal_main .modal_form .input_box, .modal_1 .modal_main .modal_form .input_box {
+  margin-top: 10px;
+  padding: 15px;
+  width: 100%;
+}
+
+.modal_2 .modal_main .modal_form .input_box label, .modal_1 .modal_main .modal_form .input_box label {
+  color: #7C8695;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.modal_2 .modal_main .modal_form .input_box select, .modal_1 .modal_main .modal_form .input_box select {
+  border: 1px solid #D9D9D9;
+  padding: 10px;
+  width: 300px;
+  outline: none;
+  color: #7C8695;
+}
+
+.modal_2 .modal_main .modal_form .input_box input, .modal_1 .modal_main .modal_form .input_box input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #D9D9D9;
+  padding: 0 5px;
+  height: 40px;
+  width: 300px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #7C8695;
+}
+
+.modal_2 .modal_main .modal_form .input_box input:focus, .modal_1 .modal_main .modal_form .input_box input:focus {
+  border-bottom-color: #333;
+}
+
+.modal_2 .modal_main .modal_form .input_box input::-webkit-input-placeholder, .modal_1 .modal_main .modal_form .input_box input::-webkit-input-placeholder {
+  font-weight: 600;
+  color: #7C8695;
+}
+
+.modal_2 .modal_main .modal_form .input_box input:-ms-input-placeholder, .modal_1 .modal_main .modal_form .input_box input:-ms-input-placeholder {
+  font-weight: 600;
+  color: #7C8695;
+}
+
+.modal_2 .modal_main .modal_form .input_box input::-ms-input-placeholder, .modal_1 .modal_main .modal_form .input_box input::-ms-input-placeholder {
+  font-weight: 600;
+  color: #7C8695;
+}
+
+.modal_2 .modal_main .modal_form .input_box input::placeholder, .modal_1 .modal_main .modal_form .input_box input::placeholder {
+  font-weight: 600;
+  color: #7C8695;
+}
+
+.modal_2 .modal_main .modal_form .input_box .calendar_date, .modal_1 .modal_main .modal_form .input_box .calendar_date {
+  width: 160px;
+}
+
+.modal_2 .modal_main .modal_form .input_box #color_input, .modal_1 .modal_main .modal_form .input_box #color_input {
+  width: 60px;
+  border: none;
+}
+
+.modal_2 .modal_main .modal_form .button_calendar, .modal_1 .modal_main .modal_form .button_calendar {
+  outline: none;
+  width: 300px;
+  border: none;
+  background: -webkit-gradient(linear, right top, left top, from(#f1271186), to(#f5af1981));
+  background: linear-gradient(to left, #f1271186, #f5af1981);
+  padding: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-left: 15px;
+  margin-top: 25px;
+}
+
+.modal_2 .modal_main .modal_form .button_calendar .submit_arrow, .modal_1 .modal_main .modal_form .button_calendar .submit_arrow {
+  color: transparent;
+  margin-left: 0px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.modal_2 .modal_main .modal_form .button_calendar:hover .submit_arrow, .modal_1 .modal_main .modal_form .button_calendar:hover .submit_arrow {
+  color: white;
+  margin-left: 10px;
+}
+
+.hideme {
+  display: none;
+}
+
+.modal_1 .modal_main {
+  height: 400px;
+}
+
+.admin_panel .add_new_date {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.75rem 2rem;
+  background: #3c9600;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-animation: fadeBox;
+          animation: fadeBox;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+  position: absolute;
+  left: 400px;
+  top: 97px;
+  z-index: 1000;
+}
+
+.admin_panel .add_new_date:hover {
+  -webkit-box-shadow: 0 0 10px #555;
+          box-shadow: 0 0 10px #555;
+}
+
+@-webkit-keyframes fadeBox {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes fadeBox {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.admin_panel .main_section {
+  grid-area: main_section;
+  padding: 10px;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'calendar calendar_form ';
+  -ms-grid-columns: 1050px 1fr;
+      grid-template-columns: 1050px 1fr;
+  grid-gap: 10px;
+}
+
+.admin_panel .main_section #calendar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: calendar;
+  border: 1px solid black;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px #d8d8d8;
+          box-shadow: 0px 0px 10px #d8d8d8;
+  border: 1px solid rgba(212, 212, 212, 0.514);
+  padding: 10px;
+  width: 1022px;
+  -webkit-animation: fadeBox;
+          animation: fadeBox;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+@keyframes fadeBox {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.admin_panel .main_section .calendar_form {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: calendar_form;
+  border: 1px solid black;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px #d8d8d8;
+          box-shadow: 0px 0px 10px #d8d8d8;
+  border: 1px solid rgba(212, 212, 212, 0.514);
+  float: left;
+  padding: 5px;
+  -webkit-animation: fadeBox;
+          animation: fadeBox;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+  text-align: center;
+}
+
+@keyframes fadeBox {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.admin_panel .main_section .calendar_form .calendar_days table thead tr {
+  background: #cecece;
+}
+
+.admin_panel .main_section .calendar_form .calendar_days table thead tr th {
+  text-align: left;
+  padding: 5px;
+}
+
+.admin_panel .main_section .calendar_form .calendar_days table tbody {
+  border: 1px solid #cecece;
+}
+
+.admin_panel .main_section .calendar_form .calendar_days table tbody tr {
+  padding: 5px;
+  text-align: left;
+}
+/*# sourceMappingURL=calendar.css.map */

@@ -1,0 +1,137 @@
+.modal_wrapper{
+    background: linear-gradient(to right, #f1271186, #f5af1981);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    overflow: hidden;
+    z-index: 10000;
+
+    .modal_main{
+        padding: 10px;
+        background: rgb(255, 255, 255);
+        height: 700px;
+        width: 420px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border: 1px solid #cecece;
+        border-radius: 10px;
+        transform: translate(-50%,-50%);
+
+        .modal_header{
+            position: relative;
+            text-align: center;
+            h3{
+                padding: 15px;
+                font-size: 22px;
+                font-weight: lighter;
+                color: $headerColor;
+                font-weight: 600;
+                border-bottom: 1px solid #cecece;
+            }
+            i{
+                margin-left: 10px;
+            }
+            .close_modal{
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                font-size: 22px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// CALENDER MODAL
+.modal_2, .modal_1{
+    .modal_main{
+        position: relative;
+        .modal_form{
+            position: absolute;
+            left: 50%;
+            top: 80px;
+            transform: translate(-50%,0%);
+            .input_box{
+                margin-top: 10px;
+                padding: 15px;
+                width: 100%;
+                label{
+                    color: $textColor;
+                    margin-left: 5px;
+                    font-size: 14px;
+                }
+                select{
+                    border: 1px solid #D9D9D9;
+                    padding: 10px;
+                    width: 300px;
+                    outline: none;
+                    color: $textColor;
+                }
+                input{
+                    border: none;
+                    outline: none;
+                    border-bottom: 1px solid #D9D9D9;
+                    padding: 0 5px;
+                    height: 40px;
+                    width: 300px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: $textColor;
+                    &:focus{
+                        border-bottom-color: #333;
+                    }
+                    &::placeholder{
+                        font-weight: 600;
+                        color: $textColor;
+                    }
+                }
+                .calendar_date{
+                    width: 160px;
+                }
+                #color_input{
+                    width: 60px;
+                    border: none;
+                }
+            }
+            .button_calendar{
+                outline: none;
+                width: 300px;
+                border: none;
+                background: linear-gradient(to left, #f1271186, #f5af1981);
+                padding: 10px;
+                color: white;
+                font-weight: 600;
+                font-size: 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                margin-left: 15px;
+                margin-top: 25px;
+
+                .submit_arrow{
+                    color: transparent;
+                    margin-left: 0px;
+                    transition: all 0.2s;
+                }
+                &:hover{
+                    .submit_arrow{
+                        color: white;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.hideme{
+    display: none;
+}
+.modal_1{
+    .modal_main{
+        height: 400px;
+    }
+}

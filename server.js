@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -11,10 +12,11 @@ var flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
-
 // User model
 var User = require('./models/user');
+var Notes = require('./models/notes');
+// Calender Model
+// var Calender = require('./models/calender');
 
 
 // Fetch database
@@ -39,7 +41,6 @@ require('./config/passport')(passport);
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

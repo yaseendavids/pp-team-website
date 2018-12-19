@@ -1,0 +1,40 @@
+<!-- MODAL -->
+<div class="modal_wrapper">
+    <div class="modal_main_wrapper">
+        <div id="modal_main">
+            
+            <div class="modal_exit">
+                <i class="fas fa-times close_modal"></i>
+            </div>
+
+            <div class="modal_header">
+                <div class="modal_header_text">
+                    <p>Add New Task</p>
+                </div>
+            </div>
+
+            <div class="modal_add_note">
+                <form method="POST" action="/add_new_note">
+                    <input type="text" name="username" value="<%= user.username %>" class="hideme">
+                    <input type="text" name="completed" value="false" class="hideme">
+                    <label for="note" class="importance_text">Task:</label>
+                    <br>
+                    <input type="text" name="note" placeholder="New task" required autocomplete="off">
+                    <br>
+
+                    <label class="importance_text">Level of importance:</label>
+                    <br>
+                    <input type="radio" id="Urgent" name="importance" value="Urgent">
+                    <label class="label_form" for="Urgent">Urgent</label>
+                    <input type="radio" id="Normal" name="importance" value="Normal">
+                    <label class="label_form" for="Normal">Normal </label>
+                    <input type="radio" id="None" name="importance" value="None">
+                    <label class="label_form" for="None">None</label>
+
+                    <br>
+                    <button class="add_new_note">Submit</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,308 @@
+@import "../mixins";
+@import "../variables";
+@import "../modals";
+// @import "../"
+
+@keyframes fadeTimeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.Urgent{
+    background: #F44336;
+    @include importanceNote();
+    margin-right: 5px;
+    text-decoration: none;
+    margin-top: 3px;
+}
+.Normal{
+    background: rgb(0, 211, 18);
+    @include importanceNote();
+    margin-right: 5px;
+    text-decoration: none;
+    margin-top: 3px;
+}
+.None{
+    background: rgb(0, 98, 211);
+    @include importanceNote();
+    margin-right: 5px;
+    text-decoration: none;
+    margin-top: 3px;
+}
+
+// ************** ADMIN PANEL **************
+.admin_panel{
+    
+    // ************** MAIN SECTION **************
+    .main_section{
+        grid-area: main_section;
+        display: grid;
+        grid-template-areas: 'weather_main notes_main'
+        'news_main .'
+        ;
+        grid-template-columns: 1fr 60%;
+        padding: 20px;
+        grid-gap: 10px;
+        background: #F9FAFB;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+
+        // ************** WEATHER MAIN **************
+        .weather_main{
+            grid-area: weather_main;
+            @include panelBox();
+            @include fadeBox();
+            height: 340px;
+            color: $boxHeaderColor;
+
+            // ************** WEATHER HEADER **************
+            .weather_header{
+                @include boxHeaderSection();
+            }
+
+            //  WEATHER CONTENT
+            .weather_content{
+                padding: 10px;
+                margin-top: 5px;
+                height: 100px;
+                // WEATHER ICON
+                .weather_sub{
+                    float: left;
+                    // WEATHER TEMPERATURE TEXT
+                    .weather_temp_text{
+                        font-weight: 600;
+                        margin-top: 15px;
+                        margin-right: 10px;
+                        float: left;
+                        font-size: 25px;
+                    }
+                    // WEATHER CONDITION
+                    .weather_condition{
+                        font-size: 18px;
+                        color: $boxTextColor;
+                    }
+                }
+                // CALENDER
+                .today_calender{
+                    float: right;
+                    p{
+                        position: relative;
+                        bottom: 0;
+                        font-weight: 600;
+                        font-size: 18px;
+                    }
+                    .today_day{
+                        margin-top: 30px;
+                    }
+                    // TODAY'S DATE
+                    .today_date{
+                        margin-top: 10px;
+                        color: $boxTextColor;
+                        font-weight: lighter;
+                    }
+                }
+            }
+            // WEATHER ADDITIONAL
+            .weather_additional{
+                margin-top: 10px;
+                p{
+                    padding: 10px;
+                }
+                span{
+                    float: right;
+                }
+                // WIND SPEED
+                .wind_speed{
+                    border-top: 1px solid #e2e2e2;
+                }
+                // HUMIDITY
+                .humidity{
+                    border-top: 1px solid #e2e2e2;
+                }
+                // CLOUD COVER
+                .cloud_cover{
+                    border-top: 1px solid #e2e2e2;
+                    border-bottom: 1px solid #e2e2e2;
+                }
+            }
+        }
+
+        // NOTES MAIN
+        .notes_main{
+            grid-area: notes_main;
+            @include panelBox();
+            height: 340px;
+            color: $boxHeaderColor;
+            position: relative;
+            @include fadeBox();
+            animation-delay: 1.5s;
+            
+            //  NOTES HEADER
+            .notes_header{
+                @include boxHeaderSection();
+            }
+            .notes_btn{
+                position: absolute;
+                top: 7px;
+                right: 20px;
+                @include button();
+                padding: 0.4rem 1rem;
+                border: 1px solid green;
+                font-size: 14px;
+                color: white;
+                background: green;
+                border-radius: 3px;
+            }
+            // NOTES CONTENT
+            .notes_content{
+                padding: 10px;
+                margin-top: 20px;
+                height: 240px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                color: #7C8695;
+                a{
+                    text-decoration: none;
+                }
+                .delete_note{
+                    cursor: pointer;
+                    display: none;
+                    float: right;
+                    color: #F44336;
+                    margin-right: 10px;
+                    font-size: 18px;
+                }
+                .completed_task{
+                    display: block;
+                }
+                // NOTES TEXT
+                .notes_text{
+                    color: $boxTextColor;
+                    border-top: 1px solid #e2e2e2;
+                    padding: 8px;
+                    &:hover{
+                        .delete_note{
+                            display: block;
+                        }
+                    }
+                }
+                // NOTES COMPLETE
+                .note_complete{
+                    color: #f16311;
+                    transition: all 0.2s;
+                    &:hover{
+                        color: transparent;
+                    }
+                }
+                // NOTES CHECK
+                .note_check{
+                    color: transparent;
+                    transition: all 0.2s;
+                    &:hover{
+                        color: #f16311;
+                    }
+                }
+                .note_icon{
+                    cursor: pointer;
+                    margin-right: 10px;
+                    padding: 2px;
+                    border: 2px solid $boxTextColor;
+                }
+                .note_label_wrapper{
+                    width: 22px;
+                    float: right;
+                    margin-right: 65px;
+                }
+                &::-webkit-scrollbar {
+                    width: 10px;
+                }
+                &::-webkit-scrollbar-track {
+                    background: #ffffff;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: #555;
+                }
+            }
+        }
+        .news_main{
+            grid-area: news_main;
+            @include panelBox();
+            @include fadeBox();
+            height: 450px;
+            color: $boxHeaderColor;
+            animation-delay: 2s;
+
+            .news_header{
+                @include boxHeaderSection();
+            }
+            .news_content{
+                height: 380px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                padding: 5px;
+                .news_box{
+                    height: 140px;
+                    width: 100%;
+                    margin-bottom: 10px;
+                    .news_image{
+                        float: left;
+                        width: 35%;
+                        img{
+                            height: 140px;
+                            width: 190px;
+                            border-radius: 5px;
+                        }
+                    }
+                    .news_text{
+                        position: relative;
+                        float: left;
+                        width: 60%;
+                        height: 150px;
+                        a{
+                            text-decoration: none;
+                            color: $boxTextColor;
+                        }
+                        .article_title{
+                            margin-top: 15px;
+                            font-weight: 600;
+                            letter-spacing: 0.5px;
+                        }
+                        .article_info{
+                            color: #a7a7a7;
+                            font-size: 14px;
+                            margin-top: 10px;
+                            .article_author, .article_date{
+                                margin-left: 5px;
+                            }
+                            .calendar_icon{
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+                &::-webkit-scrollbar {
+                    width: 10px;
+                }
+                &::-webkit-scrollbar-track {
+                    background: #ffffff;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: #555;
+                }
+            }
+        }
+    }
+}
