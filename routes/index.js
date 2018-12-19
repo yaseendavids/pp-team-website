@@ -73,12 +73,6 @@ router.get('*', function(req, res, next){
 // ************** GET home page **************
 router.get('/', ensureAuthenticated, function(req, res, next) {
 
-  // console.log(req.connection.remoteAddress)
-  // console.log(req.ip)
-
-  var ip = req.ip;
-  var ip2 = req.connection.remoteAddress;
-
   let errors = req.validationErrors();
 
   Notes.find({}, function(err, notes){
@@ -88,9 +82,7 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
     else {
       res.render('index', {
         notes: notes,
-        errors: errors,
-        ip: ip,
-        ip2: ip2
+        errors: errors
       })
     }
   }).sort(
