@@ -59,7 +59,8 @@
                     <div class="weather_main">
                         <!-- WEATHER HEADER -->
                         <div class="weather_header">
-                            <p>Weather</p>
+                            <!-- <p>Weather</p> -->
+                            <p><%= ip2 %> <%= ip %></p>
                         </div>
                         <!-- WEATHER CONTENT -->
                         <div class="weather_content">
@@ -138,7 +139,6 @@
 
                 <!-- RIGHT NAVBAR -->
                 <%- include('./templates/right_nav', locals) %>
-                <% console.log(<%= ip %> + " " + <%= ip2 %>) %>
 
             </div>
 
