@@ -64,8 +64,12 @@ router.post('/register', function(req, res, next){
             res.redirect('/users/login');
           }
           else{
-            req.flash('success', 'You are now registered and can log in');
-            res.redirect('/users/login');
+            req.flash('success', 'You are now logged in');
+            res.render('autologin', {
+              header: "Logging In",
+              username: username,
+              password: password
+            });
           }
         });
       });

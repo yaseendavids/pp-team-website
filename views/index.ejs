@@ -91,7 +91,7 @@
                         <div class="notes_content">
                             <% for (let i = 0; i < notes.length; i++) { %>
                                 <% if (notes[i].username != user.username) { %>
-                                    <!-- <p id="notes_length"></p> -->
+                                    <p id="notes_length"></p>
                                 <% } else { %>
                                     <% if (notes[i].username == user.username) { %>
                                         <% if (notes[i].completed == 'true') { %>

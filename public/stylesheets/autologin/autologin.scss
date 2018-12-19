@@ -1,0 +1,18 @@
+@import '../loading';
+
+*{
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.loading_wrapper{
+    h1{
+        text-align: center;
+        margin-top: 200px;
+    }
+}
+
+
+.container{
+    display: none;
+}

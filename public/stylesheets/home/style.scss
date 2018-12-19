@@ -11,37 +11,6 @@
     }
 }
 
-.loading_wrapper{
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    z-index: 10000000;
-    background: rgba(32, 32, 32, 0.651);
-    display: none;
-    .loading_main {
-        position: relative;
-        left: 50%;
-        top: 50%;
-        z-index: 10000000;
-        transform: translate(-50%,-50%);
-        height: 50px;
-        width: 50px;
-        animation: rotate 0.8s infinite linear;
-        border: 10px solid #fff;
-        border-right-color: transparent;
-        border-radius: 50%;
-    }
-    
-    @keyframes rotate {
-      0%    { transform: rotate(0deg); }
-      100%  { transform: rotate(360deg); }
-    }
-}
-
-
 .Urgent{
     background: #F44336;
     @include importanceNote();
