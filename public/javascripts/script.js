@@ -27,13 +27,8 @@ $(document).ready(function(){
         }
     });
 
-    // $(".left_nav_links").hover(function(){
-    //     if ($(this).css('background', "#fff")){
-    //         $(this).css('color', '#333');
-    //     }
-    //     else{
-    //         $(this).css('background', "transparent")
-    //     }
-    // })
+    $(".disabled").on('click', function(){
+        $(".loading_wrapper").fadeIn();
+    })
 
 });

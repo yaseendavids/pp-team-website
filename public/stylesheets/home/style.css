@@ -182,6 +182,56 @@
   }
 }
 
+.loading_wrapper {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  z-index: 10000000;
+  background: rgba(32, 32, 32, 0.651);
+  display: none;
+}
+
+.loading_wrapper .loading_main {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  z-index: 10000000;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 50px;
+  width: 50px;
+  -webkit-animation: rotate 0.8s infinite linear;
+          animation: rotate 0.8s infinite linear;
+  border: 10px solid #fff;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .Urgent {
   background: #F44336;
   padding: 1px 20px;
@@ -447,60 +497,81 @@
   text-decoration: none;
 }
 
-.admin_panel .main_section .notes_main .notes_content .delete_note {
-  cursor: pointer;
-  display: none;
-  float: right;
-  color: #F44336;
-  margin-right: 10px;
-  font-size: 18px;
-}
-
-.admin_panel .main_section .notes_main .notes_content .completed_task {
-  display: block;
-}
-
 .admin_panel .main_section .notes_main .notes_content .notes_text {
   color: #7C8695;
   border-top: 1px solid #e2e2e2;
   padding: 8px;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'notes_left notes_center notes_right';
+  -ms-grid-columns: 30px 1fr 120px;
+      grid-template-columns: 30px 1fr 120px;
+  grid-gap: 10px;
 }
 
-.admin_panel .main_section .notes_main .notes_content .notes_text:hover .delete_note {
-  display: block;
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: notes_left;
 }
 
-.admin_panel .main_section .notes_main .notes_content .note_complete {
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_complete {
   color: #f16311;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
-.admin_panel .main_section .notes_main .notes_content .note_complete:hover {
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_complete:hover {
   color: transparent;
 }
 
-.admin_panel .main_section .notes_main .notes_content .note_check {
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_check {
   color: transparent;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
-.admin_panel .main_section .notes_main .notes_content .note_check:hover {
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_check:hover {
   color: #f16311;
 }
 
-.admin_panel .main_section .notes_main .notes_content .note_icon {
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_icon {
   cursor: pointer;
-  margin-right: 10px;
   padding: 2px;
   border: 2px solid #7C8695;
 }
 
-.admin_panel .main_section .notes_main .notes_content .note_label_wrapper {
-  width: 22px;
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_center {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: notes_center;
+}
+
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_right {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: notes_right;
+}
+
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .note_label_wrapper {
+  width: 100px;
   float: right;
-  margin-right: 65px;
+}
+
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .delete_note {
+  float: left;
+  cursor: pointer;
+  display: none;
+  color: #F44336;
+  font-size: 18px;
+}
+
+.admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .completed_task {
+  display: block;
+}
+
+.admin_panel .main_section .notes_main .notes_content .notes_text:hover .delete_note {
+  display: block;
 }
 
 .admin_panel .main_section .notes_main .notes_content::-webkit-scrollbar {
@@ -630,5 +701,382 @@
 
 .admin_panel .main_section .news_main .news_content::-webkit-scrollbar-thumb {
   background: #555;
+}
+
+@media (min-width: 1280px) and (max-width: 1500px) {
+  .admin_panel .main_section {
+    grid-area: main_section;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: 'weather_main notes_main' 'news_main .';
+    -ms-grid-columns: 1fr 60%;
+        grid-template-columns: 1fr 60%;
+    padding: 20px;
+    grid-gap: 15px;
+    background: #F9FAFB;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .admin_panel .main_section::-webkit-scrollbar {
+    width: 10px;
+  }
+  .admin_panel .main_section::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  .admin_panel .main_section::-webkit-scrollbar-thumb {
+    background: #555;
+  }
+  .admin_panel .main_section .weather_main {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: weather_main;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px #d8d8d8;
+            box-shadow: 0px 0px 10px #d8d8d8;
+    border: 1px solid rgba(212, 212, 212, 0.514);
+    -webkit-animation: fadeBox;
+            animation: fadeBox;
+    -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    height: 340px;
+    color: #555;
+  }
+  @-webkit-keyframes fadeBox {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  @keyframes fadeBox {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  .admin_panel .main_section .weather_main .weather_header {
+    padding: 10px;
+    background: #f0f0f0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .admin_panel .main_section .weather_main .weather_header p {
+    font-weight: 600;
+    font-size: 20px;
+    color: #555;
+  }
+  .admin_panel .main_section .weather_main .weather_content {
+    padding: 10px;
+    margin-top: 5px;
+    height: 100px;
+  }
+  .admin_panel .main_section .weather_main .weather_content .weather_sub {
+    float: left;
+  }
+  .admin_panel .main_section .weather_main .weather_content .weather_sub .weather_temp_text {
+    font-weight: 600;
+    margin-top: 15px;
+    margin-right: 10px;
+    float: left;
+    font-size: 25px;
+  }
+  .admin_panel .main_section .weather_main .weather_content .weather_sub .weather_condition {
+    font-size: 18px;
+    color: #7C8695;
+  }
+  .admin_panel .main_section .weather_main .weather_content .today_calender {
+    float: right;
+  }
+  .admin_panel .main_section .weather_main .weather_content .today_calender p {
+    position: relative;
+    bottom: 0;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .admin_panel .main_section .weather_main .weather_content .today_calender .today_day {
+    margin-top: 30px;
+  }
+  .admin_panel .main_section .weather_main .weather_content .today_calender .today_date {
+    margin-top: 10px;
+    color: #7C8695;
+    font-weight: lighter;
+  }
+  .admin_panel .main_section .weather_main .weather_additional {
+    margin-top: 10px;
+  }
+  .admin_panel .main_section .weather_main .weather_additional p {
+    padding: 10px;
+  }
+  .admin_panel .main_section .weather_main .weather_additional span {
+    float: right;
+  }
+  .admin_panel .main_section .weather_main .weather_additional .wind_speed {
+    border-top: 1px solid #e2e2e2;
+  }
+  .admin_panel .main_section .weather_main .weather_additional .humidity {
+    border-top: 1px solid #e2e2e2;
+  }
+  .admin_panel .main_section .weather_main .weather_additional .cloud_cover {
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  .admin_panel .main_section .notes_main {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: notes_main;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px #d8d8d8;
+            box-shadow: 0px 0px 10px #d8d8d8;
+    border: 1px solid rgba(212, 212, 212, 0.514);
+    height: 340px;
+    color: #555;
+    position: relative;
+    -webkit-animation: fadeBox;
+            animation: fadeBox;
+    -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-animation-delay: 1.5s;
+            animation-delay: 1.5s;
+  }
+  @keyframes fadeBox {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  .admin_panel .main_section .notes_main .notes_header {
+    padding: 10px;
+    background: #f0f0f0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .admin_panel .main_section .notes_main .notes_header p {
+    font-weight: 600;
+    font-size: 20px;
+    color: #555;
+  }
+  .admin_panel .main_section .notes_main .notes_btn {
+    position: absolute;
+    top: 7px;
+    right: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0.4rem 1rem;
+    border: 1px solid green;
+    font-size: 14px;
+    color: white;
+    background: green;
+    border-radius: 3px;
+  }
+  .admin_panel .main_section .notes_main .notes_content {
+    padding: 10px;
+    margin-top: 20px;
+    height: 240px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    color: #7C8695;
+  }
+  .admin_panel .main_section .notes_main .notes_content a {
+    text-decoration: none;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text {
+    color: #7C8695;
+    border-top: 1px solid #e2e2e2;
+    padding: 8px;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: 'notes_left notes_center notes_right';
+    -ms-grid-columns: 30px 1fr 150px;
+        grid-template-columns: 30px 1fr 150px;
+    grid-gap: 10px;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_left {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: notes_left;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_complete {
+    color: #f16311;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_complete:hover {
+    color: transparent;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_check {
+    color: transparent;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_check:hover {
+    color: #f16311;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_icon {
+    cursor: pointer;
+    padding: 2px;
+    border: 2px solid #7C8695;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_center {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: notes_center;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    grid-area: notes_right;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .note_label_wrapper {
+    width: 22px;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .delete_note {
+    cursor: pointer;
+    display: none;
+    color: #F44336;
+    font-size: 18px;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .completed_task {
+    display: block;
+  }
+  .admin_panel .main_section .notes_main .notes_content .notes_text:hover .delete_note {
+    display: block;
+  }
+  .admin_panel .main_section .notes_main .notes_content::-webkit-scrollbar {
+    width: 10px;
+  }
+  .admin_panel .main_section .notes_main .notes_content::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  .admin_panel .main_section .notes_main .notes_content::-webkit-scrollbar-thumb {
+    background: #555;
+  }
+  .admin_panel .main_section .news_main {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: news_main;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px #d8d8d8;
+            box-shadow: 0px 0px 10px #d8d8d8;
+    border: 1px solid rgba(212, 212, 212, 0.514);
+    -webkit-animation: fadeBox;
+            animation: fadeBox;
+    -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    height: 450px;
+    width: 170%;
+    color: #555;
+    -webkit-animation-delay: 2s;
+            animation-delay: 2s;
+  }
+  @keyframes fadeBox {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  .admin_panel .main_section .news_main .news_header {
+    padding: 10px;
+    background: #f0f0f0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .admin_panel .main_section .news_main .news_header p {
+    font-weight: 600;
+    font-size: 20px;
+    color: #555;
+  }
+  .admin_panel .main_section .news_main .news_content {
+    height: 380px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 5px;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box {
+    height: 140px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box .news_image {
+    float: left;
+    width: 35%;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box .news_image img {
+    height: 140px;
+    width: 190px;
+    border-radius: 5px;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box .news_text {
+    position: relative;
+    float: left;
+    width: 60%;
+    height: 150px;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box .news_text a {
+    text-decoration: none;
+    color: #7C8695;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box .news_text .article_title {
+    margin-top: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box .news_text .article_info {
+    color: #a7a7a7;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box .news_text .article_info .article_author, .admin_panel .main_section .news_main .news_content .news_box .news_text .article_info .article_date {
+    margin-left: 5px;
+  }
+  .admin_panel .main_section .news_main .news_content .news_box .news_text .article_info .calendar_icon {
+    margin-left: 10px;
+  }
+  .admin_panel .main_section .news_main .news_content::-webkit-scrollbar {
+    width: 10px;
+  }
+  .admin_panel .main_section .news_main .news_content::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  .admin_panel .main_section .news_main .news_content::-webkit-scrollbar-thumb {
+    background: #555;
+  }
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,7 +1,6 @@
 @import "../mixins";
 @import "../variables";
 @import "../modals";
-// @import "../"
 
 @keyframes fadeTimeIn {
     0%{
@@ -11,6 +10,37 @@
         opacity: 1;
     }
 }
+
+.loading_wrapper{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 10000000;
+    background: rgba(32, 32, 32, 0.651);
+    display: none;
+    .loading_main {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        z-index: 10000000;
+        transform: translate(-50%,-50%);
+        height: 50px;
+        width: 50px;
+        animation: rotate 0.8s infinite linear;
+        border: 10px solid #fff;
+        border-right-color: transparent;
+        border-radius: 50%;
+    }
+    
+    @keyframes rotate {
+      0%    { transform: rotate(0deg); }
+      100%  { transform: rotate(360deg); }
+    }
+}
+
 
 .Urgent{
     background: #F44336;
@@ -177,54 +207,67 @@
                 a{
                     text-decoration: none;
                 }
-                .delete_note{
-                    cursor: pointer;
-                    display: none;
-                    float: right;
-                    color: #F44336;
-                    margin-right: 10px;
-                    font-size: 18px;
-                }
-                .completed_task{
-                    display: block;
-                }
                 // NOTES TEXT
                 .notes_text{
                     color: $boxTextColor;
                     border-top: 1px solid #e2e2e2;
                     padding: 8px;
+                    display: grid;
+                    grid-template-areas: 'notes_left notes_center notes_right'
+                    ;
+                    grid-template-columns: 30px 1fr 120px;
+                    grid-gap: 10px;
+
+                    .notes_left{
+                        grid-area: notes_left;
+                        // NOTES COMPLETE
+                        .note_complete{
+                            color: #f16311;
+                            transition: all 0.2s;
+                            &:hover{
+                                color: transparent;
+                            }
+                        }
+                        // NOTES CHECK
+                        .note_check{
+                            color: transparent;
+                            transition: all 0.2s;
+                            &:hover{
+                                color: #f16311;
+                            }
+                        }
+                        .note_icon{
+                            cursor: pointer;
+                            padding: 2px;
+                            border: 2px solid $boxTextColor;
+                        }
+                    }
+                    .notes_center{
+                        grid-area: notes_center;
+                    }
+                    .notes_right{
+                        grid-area: notes_right;
+                        .note_label_wrapper{
+                            width: 100px;
+                            float: right;
+                        }
+                        .delete_note{
+                            float: left;
+                            cursor: pointer;
+                            display: none;
+                            color: #F44336;
+                            font-size: 18px;
+                        }
+                        .completed_task{
+                            display: block;
+                        }
+                    }
+
                     &:hover{
                         .delete_note{
                             display: block;
                         }
                     }
-                }
-                // NOTES COMPLETE
-                .note_complete{
-                    color: #f16311;
-                    transition: all 0.2s;
-                    &:hover{
-                        color: transparent;
-                    }
-                }
-                // NOTES CHECK
-                .note_check{
-                    color: transparent;
-                    transition: all 0.2s;
-                    &:hover{
-                        color: #f16311;
-                    }
-                }
-                .note_icon{
-                    cursor: pointer;
-                    margin-right: 10px;
-                    padding: 2px;
-                    border: 2px solid $boxTextColor;
-                }
-                .note_label_wrapper{
-                    width: 22px;
-                    float: right;
-                    margin-right: 65px;
                 }
                 &::-webkit-scrollbar {
                     width: 10px;
@@ -306,3 +349,5 @@
         }
     }
 }
+
+@import '../responsive'

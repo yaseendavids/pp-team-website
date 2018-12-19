@@ -189,9 +189,9 @@
   -webkit-animation-delay: 1.5s;
           animation-delay: 1.5s;
   position: absolute;
-  left: 400px;
+  left: 800px;
   top: 97px;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .admin_panel .add_new_date:hover {
@@ -226,17 +226,15 @@
   padding: 10px;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'calendar calendar_form ';
-  -ms-grid-columns: 1050px 1fr;
-      grid-template-columns: 1050px 1fr;
-  grid-gap: 10px;
+      grid-template-areas: '. calendar . ';
+  -ms-grid-columns: 1fr 2fr 1fr;
+      grid-template-columns: 1fr 2fr 1fr;
 }
 
 .admin_panel .main_section #calendar {
   -ms-grid-row: 1;
-  -ms-grid-column: 1;
+  -ms-grid-column: 2;
   grid-area: calendar;
-  border: 1px solid black;
   background: #fff;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 10px #d8d8d8;
@@ -254,43 +252,6 @@
           animation-fill-mode: forwards;
   -webkit-transform: scale(0);
           transform: scale(0);
-}
-
-@keyframes fadeBox {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-
-.admin_panel .main_section .calendar_form {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: calendar_form;
-  border: 1px solid black;
-  background: #fff;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 10px #d8d8d8;
-          box-shadow: 0px 0px 10px #d8d8d8;
-  border: 1px solid rgba(212, 212, 212, 0.514);
-  float: left;
-  padding: 5px;
-  -webkit-animation: fadeBox;
-          animation: fadeBox;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-animation-delay: 1.5s;
-          animation-delay: 1.5s;
   text-align: center;
 }
 
@@ -303,23 +264,5 @@
     -webkit-transform: scale(1);
             transform: scale(1);
   }
-}
-
-.admin_panel .main_section .calendar_form .calendar_days table thead tr {
-  background: #cecece;
-}
-
-.admin_panel .main_section .calendar_form .calendar_days table thead tr th {
-  text-align: left;
-  padding: 5px;
-}
-
-.admin_panel .main_section .calendar_form .calendar_days table tbody {
-  border: 1px solid #cecece;
-}
-
-.admin_panel .main_section .calendar_form .calendar_days table tbody tr {
-  padding: 5px;
-  text-align: left;
 }
 /*# sourceMappingURL=calendar.css.map */
