@@ -3,12 +3,11 @@ const findOrCreate = require('mongoose-findorcreate');
 const User = require('../models/user');
 const config = require('../config/database');
 const bcrypt = require('bcryptjs');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 module.exports = function(passport){
 
     // Local Strategy
-    passport.use(new LocalStrategy(function(username, password, done){
+    passport.use('local', new LocalStrategy(function(username, password, done){
 
         // Match Username
         let query = {
@@ -37,10 +36,36 @@ module.exports = function(passport){
                 }
             });
 
-
         })
 
     }));
+
+    passport.use('token', new LocalStrategy(function(username, password, done){
+        // Match Username
+        let query = {
+            username:username
+        }
+        User.findOne(query, function(err, user){
+            if (err) throw err;
+
+            if (!user) {
+                return done(null, false, {
+                    message: "No User Found"
+                });
+            }
+            // Match Password
+            if (password == user.password){
+                return done(null, user);
+            }
+            else{
+                return done(null, false, {
+                    message: "Incorrect Username or Password"
+                });
+            }
+
+        })
+    }));
+
 
     passport.serializeUser(function(user, done) {
         done(null, user.id);

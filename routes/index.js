@@ -9,6 +9,8 @@ var request = require('request');
 var passport = require('passport');
 var back = require('express-back');
 var fs = require("fs");
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./scratch');
 
 // User model
 var User = require('../models/user');
@@ -89,6 +91,7 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
     { "_id":-1 }
   )
 });
+
 
 // ************** ADD NOTE CHECK **************
 router.get('/completed/:id', ensureAuthenticated, function(req, res, next){
@@ -190,7 +193,7 @@ router.get('/calendar', ensureAuthenticated, function(req, res, next){
 });
 
 // ************** POST CALENDAR DATE **************
-router.post('/calendar-form', function(req, res, next){
+router.post('/calendar-form', ensureAuthenticated, function(req, res, next){
 
   var date = new Calendar();
 
@@ -220,12 +223,44 @@ router.get('/hr-policy', ensureAuthenticated, function(req, res, next){
  
 // ************** Access control **************
 function ensureAuthenticated(req, res, next){
+
+  let errors = req.validationErrors();
+  var userToken =  localStorage.getItem("token");
+
+  if (userToken === null || userToken === "" || userToken == null){
+    req.flash('danger', 'Please login');
+    res.redirect('/users/login');
+  }
+
   if (req.isAuthenticated()){
     return next();
   }
+
   else{
-    req.flash('danger', 'Please login');
-    res.redirect('/users/login');
+    User.findOne({token: userToken}, (err, users) => {
+      if (err){
+        console.log(err);
+        res.redirect('/users/login');
+      }
+      else{
+        if (users === null || users === ""){
+          res.redirect('/users/login');
+        }
+        else{
+          if (users.token == userToken){
+            res.render('tokenlogin', {
+              header: "Logging In",
+              username: users.username,
+              password: users.password
+            });
+          }
+          else{
+            console.log("Token not found");
+            res.redirect('/users/login');
+          }
+        }
+      }
+    })
   }
 }
 

@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
+const TokenGenerator = require('uuid-token-generator');
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./scratch');
 
 // Bring in User Model
 let User = require('../models/user');
@@ -21,11 +24,16 @@ router.get('/register', function(req, res, next){
 
 // Register Process
 router.post('/register', function(req, res, next){
+
+  const tokgen = new TokenGenerator(256, TokenGenerator.BASE62);
   
   const email = req.body.email;
   const username = req.body.username;
   const password = req.body.password;
   const password2 = req.body.password2;
+  const token = tokgen.generate();
+
+  localStorage.setItem("token", token);
 
   req.checkBody('email', 'Email is required').notEmpty();
   req.checkBody('email', 'Email is not valid').isEmail();
@@ -47,7 +55,8 @@ router.post('/register', function(req, res, next){
     let newUser = new User({
       username: username,
       email: email,
-      password: password
+      password: password,
+      token: token
     });
 
     bcrypt.genSalt(10, function(err, salt){
@@ -101,6 +110,16 @@ router.post('/login', function(req, res, next){
   })(req, res, next);
 
 });
+
+router.post('/token/login', (req, res, next) => {
+
+  passport.authenticate('token', {
+    successRedirect: '/', 
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next);
+
+})
 
 // Logout Proccess
 router.get('/logout', function(req, res){
