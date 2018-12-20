@@ -5,6 +5,7 @@ var passport = require('passport');
 const TokenGenerator = require('uuid-token-generator');
 var LocalStorage = require('node-localstorage').LocalStorage,
 localStorage = new LocalStorage('./scratch');
+var cookieParser = require('cookie-parser');
 
 // Bring in User Model
 let User = require('../models/user');
@@ -33,7 +34,7 @@ router.post('/register', function(req, res, next){
   const password2 = req.body.password2;
   const token = tokgen.generate();
 
-  localStorage.setItem("token", token);
+  res.cookie("token", token);
 
   req.checkBody('email', 'Email is required').notEmpty();
   req.checkBody('email', 'Email is not valid').isEmail();
@@ -77,7 +78,8 @@ router.post('/register', function(req, res, next){
             res.render('autologin', {
               header: "Logging In",
               username: username,
-              password: password
+              password: password,
+              token: token
             });
           }
         });

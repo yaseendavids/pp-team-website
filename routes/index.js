@@ -225,9 +225,9 @@ router.get('/hr-policy', ensureAuthenticated, function(req, res, next){
 function ensureAuthenticated(req, res, next){
 
   let errors = req.validationErrors();
-  var userToken =  localStorage.getItem("token");
+  // var userToken =  localStorage.getItem("token");
 
-  if (userToken === null || userToken === "" || userToken == null){
+  if (res.cookie === null || res.cookie === "" || res.cookie == null){
     req.flash('danger', 'Please login');
     res.redirect('/users/login');
   }
@@ -237,7 +237,7 @@ function ensureAuthenticated(req, res, next){
   }
 
   else{
-    User.findOne({token: userToken}, (err, users) => {
+    User.findOne({token: res.cookie}, (err, users) => {
       if (err){
         console.log(err);
         res.redirect('/users/login');
@@ -247,7 +247,7 @@ function ensureAuthenticated(req, res, next){
           res.redirect('/users/register');
         }
         else{
-          if (users.token == userToken){
+          if (users.token == res.cookie){
             res.render('tokenlogin', {
               header: "Logging In",
               username: users.username,
