@@ -244,7 +244,7 @@ function ensureAuthenticated(req, res, next){
       }
       else{
         if (users === null || users === ""){
-          res.redirect('/users/login');
+          res.redirect('/users/register');
         }
         else{
           if (users.token == userToken){
