@@ -228,8 +228,8 @@ function ensureAuthenticated(req, res, next){
 
   let errors = req.validationErrors();
 
-  var newToken = res.cookie,
-  theToken = newToken.split(""),
+  var newToken = res.cookie + '',
+  theToken = newToken.split("expires=Tue"),
   userToken = theToken[0];
 
   if (userToken === null || userToken === "" || userToken == null){
