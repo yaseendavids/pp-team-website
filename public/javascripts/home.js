@@ -76,7 +76,9 @@ $(document).ready(function(){
                 }
             });
         }
-        else {}
+        else {
+            $(".loading_wrapper").fadeOut("fast");
+        }
 
       });
 
