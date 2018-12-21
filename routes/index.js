@@ -75,6 +75,8 @@ router.get('*', function(req, res, next){
 // ************** GET home page **************
 router.get('/', ensureAuthenticated, function(req, res, next) {
 
+  res.cookie(res.locals.user.token + "expires=Tue, 18 Feb 2025 23:59:59 GMT");
+
   let errors = req.validationErrors();
 
   Notes.find({}, function(err, notes){
