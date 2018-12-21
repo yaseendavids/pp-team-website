@@ -232,6 +232,9 @@ function ensureAuthenticated(req, res, next){
   theToken = newToken.split("expires=Tue"),
   userToken = theToken[0];
 
+  console.log(theToken)
+  console.log(userToken)
+
   if (userToken === null || userToken === "" || userToken == null){
     req.flash('danger', 'Please login');
     res.redirect('/users/login');
