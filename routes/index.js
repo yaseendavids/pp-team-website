@@ -75,7 +75,7 @@ router.get('*', function(req, res, next){
 // ************** GET home page **************
 router.get('/', ensureAuthenticated, function(req, res, next) {
 
-  res.cookie(res.locals.user.token + "expires=Tue, 18 Feb 2025 23:59:59 GMT");
+  res.cookie(res.locals.user.token, "expires=Tue, 18 Feb 2025 12:00:00 UTC");
 
   let errors = req.validationErrors();
 
@@ -227,7 +227,10 @@ router.get('/hr-policy', ensureAuthenticated, function(req, res, next){
 function ensureAuthenticated(req, res, next){
 
   let errors = req.validationErrors();
-  var userToken = res.cookie;
+
+  var newToken = res.cookie,
+  theToken = newToken.split(""),
+  userToken = theToken[0];
 
   if (userToken === null || userToken === "" || userToken == null){
     req.flash('danger', 'Please login');

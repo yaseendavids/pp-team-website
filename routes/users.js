@@ -32,7 +32,7 @@ router.post('/register', function(req, res, next){
   const password2 = req.body.password2;
   const token = tokgen.generate();
 
-  res.cookie(token + "expires=Tue, 18 Feb 2025 23:59:59 GMT");
+  res.cookie(token, "expires=Tue, 18 Feb 2025 12:00:00 UTC");
 
   req.checkBody('email', 'Email is required').notEmpty();
   req.checkBody('email', 'Email is not valid').isEmail();
