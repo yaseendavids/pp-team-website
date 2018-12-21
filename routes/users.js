@@ -3,8 +3,6 @@ var router = express.Router();
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
 const TokenGenerator = require('uuid-token-generator');
-var LocalStorage = require('node-localstorage').LocalStorage,
-localStorage = new LocalStorage('./scratch');
 var cookieParser = require('cookie-parser');
 
 // Bring in User Model

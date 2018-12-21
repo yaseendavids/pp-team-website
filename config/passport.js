@@ -3,6 +3,7 @@ const findOrCreate = require('mongoose-findorcreate');
 const User = require('../models/user');
 const config = require('../config/database');
 const bcrypt = require('bcryptjs');
+var cookieParser = require('cookie-parser');
 
 module.exports = function(passport){
 
@@ -27,6 +28,7 @@ module.exports = function(passport){
                 if (err) throw err;
 
                 if (isMatch) {
+                    cookieParser(user.token + "expires=Tue, 18 Feb 2025 23:59:59 GMT");
                     return done(null, user);
                 }
                 else{
