@@ -75,7 +75,11 @@ router.get('*', function(req, res, next){
 // ************** GET home page **************
 router.get('/', ensureAuthenticated, function(req, res, next) {
 
-  res.cookie(res.locals.user.token, "expires=Tue, 18 Feb 2025 12:00:00 UTC");
+  var newToken = res.locals.user.token;
+  var theToken = newToken.split("expires=Tue");
+  var userToken = theToken[0];
+
+  res.cookie(userToken, ";expires=Tue, 18 Feb 2025 00:00:00 UTC");
 
   let errors = req.validationErrors();
 
@@ -241,7 +245,7 @@ function ensureAuthenticated(req, res, next){
 
   else{
 
-    var theToken = newToken.split("expires=Tue");
+    var theToken = newToken.split(";");
     var userToken = theToken[0];
 
     User.findOne({token: userToken}, (err, users) => {
@@ -251,6 +255,7 @@ function ensureAuthenticated(req, res, next){
       }
       else{
         if (users === null || users === ""){
+          console.log(err);
           res.redirect('/users/register');
         }
         else{
