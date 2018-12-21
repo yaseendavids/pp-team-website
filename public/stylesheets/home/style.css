@@ -3,7 +3,7 @@
   background: linear-gradient(to right, #f1271186, #f5af1981);
   height: 100vh;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   display: none;
@@ -162,6 +162,98 @@
 
 .modal_1 .modal_main {
   height: 400px;
+}
+
+@media (min-width: 1280px) and (max-width: 1500px) {
+  .modal_2 .modal_main {
+    height: 550px;
+    position: relative;
+  }
+  .modal_2 .modal_main .modal_header {
+    font-size: 18px;
+  }
+  .modal_2 .modal_main .modal_form {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    -webkit-transform: translate(-50%, 0%);
+            transform: translate(-50%, 0%);
+  }
+  .modal_2 .modal_main .modal_form .input_box {
+    margin-top: 10px;
+    padding: 5px;
+    width: 100%;
+  }
+  .modal_2 .modal_main .modal_form .input_box label {
+    color: #7C8695;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+  .modal_2 .modal_main .modal_form .input_box select {
+    border: 1px solid #D9D9D9;
+    padding: 5px;
+    width: 300px;
+    outline: none;
+    color: #7C8695;
+  }
+  .modal_2 .modal_main .modal_form .input_box input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #D9D9D9;
+    padding: 0 5px;
+    height: 30px;
+    width: 300px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #7C8695;
+  }
+  .modal_2 .modal_main .modal_form .input_box input:focus {
+    border-bottom-color: #333;
+  }
+  .modal_2 .modal_main .modal_form .input_box input::-webkit-input-placeholder {
+    font-weight: 600;
+    color: #7C8695;
+  }
+  .modal_2 .modal_main .modal_form .input_box input:-ms-input-placeholder {
+    font-weight: 600;
+    color: #7C8695;
+  }
+  .modal_2 .modal_main .modal_form .input_box input::-ms-input-placeholder {
+    font-weight: 600;
+    color: #7C8695;
+  }
+  .modal_2 .modal_main .modal_form .input_box input::placeholder {
+    font-weight: 600;
+    color: #7C8695;
+  }
+  .modal_2 .modal_main .modal_form .input_box .calendar_date {
+    width: 160px;
+  }
+  .modal_2 .modal_main .modal_form .button_calendar {
+    outline: none;
+    width: 300px;
+    border: none;
+    background: -webkit-gradient(linear, right top, left top, from(#f1271186), to(#f5af1981));
+    background: linear-gradient(to left, #f1271186, #f5af1981);
+    padding: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 15px;
+    margin-top: 25px;
+  }
+  .modal_2 .modal_main .modal_form .button_calendar .submit_arrow {
+    color: transparent;
+    margin-left: 0px;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+  }
+  .modal_2 .modal_main .modal_form .button_calendar:hover .submit_arrow {
+    color: white;
+    margin-left: 10px;
+  }
 }
 
 @-webkit-keyframes fadeTimeIn {
@@ -504,7 +596,6 @@
 }
 
 .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .note_label_wrapper {
-  width: 100px;
   float: right;
 }
 
@@ -513,7 +604,6 @@
   cursor: pointer;
   display: none;
   color: #F44336;
-  font-size: 18px;
 }
 
 .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .completed_task {
@@ -676,114 +766,6 @@
   .admin_panel .main_section::-webkit-scrollbar-thumb {
     background: #555;
   }
-  .admin_panel .main_section .weather_main {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: weather_main;
-    background: #fff;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 10px #d8d8d8;
-            box-shadow: 0px 0px 10px #d8d8d8;
-    border: 1px solid rgba(212, 212, 212, 0.514);
-    -webkit-animation: fadeBox;
-            animation: fadeBox;
-    -webkit-animation-delay: 1s;
-            animation-delay: 1s;
-    -webkit-animation-duration: 0.5s;
-            animation-duration: 0.5s;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    height: 340px;
-    color: #555;
-  }
-  @-webkit-keyframes fadeBox {
-    0% {
-      -webkit-transform: scale(0);
-              transform: scale(0);
-    }
-    100% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-    }
-  }
-  @keyframes fadeBox {
-    0% {
-      -webkit-transform: scale(0);
-              transform: scale(0);
-    }
-    100% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-    }
-  }
-  .admin_panel .main_section .weather_main .weather_header {
-    padding: 10px;
-    background: #f0f0f0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  .admin_panel .main_section .weather_main .weather_header p {
-    font-weight: 600;
-    font-size: 20px;
-    color: #555;
-  }
-  .admin_panel .main_section .weather_main .weather_content {
-    padding: 10px;
-    margin-top: 5px;
-    height: 100px;
-  }
-  .admin_panel .main_section .weather_main .weather_content .weather_sub {
-    float: left;
-  }
-  .admin_panel .main_section .weather_main .weather_content .weather_sub .weather_temp_text {
-    font-weight: 600;
-    margin-top: 15px;
-    margin-right: 10px;
-    float: left;
-    font-size: 25px;
-  }
-  .admin_panel .main_section .weather_main .weather_content .weather_sub .weather_condition {
-    font-size: 18px;
-    color: #7C8695;
-  }
-  .admin_panel .main_section .weather_main .weather_content .today_calender {
-    float: right;
-  }
-  .admin_panel .main_section .weather_main .weather_content .today_calender p {
-    position: relative;
-    bottom: 0;
-    font-weight: 600;
-    font-size: 18px;
-  }
-  .admin_panel .main_section .weather_main .weather_content .today_calender .today_day {
-    margin-top: 30px;
-  }
-  .admin_panel .main_section .weather_main .weather_content .today_calender .today_date {
-    margin-top: 10px;
-    color: #7C8695;
-    font-weight: lighter;
-  }
-  .admin_panel .main_section .weather_main .weather_additional {
-    margin-top: 10px;
-  }
-  .admin_panel .main_section .weather_main .weather_additional p {
-    padding: 10px;
-  }
-  .admin_panel .main_section .weather_main .weather_additional span {
-    float: right;
-  }
-  .admin_panel .main_section .weather_main .weather_additional .wind_speed {
-    border-top: 1px solid #e2e2e2;
-  }
-  .admin_panel .main_section .weather_main .weather_additional .humidity {
-    border-top: 1px solid #e2e2e2;
-  }
-  .admin_panel .main_section .weather_main .weather_additional .cloud_cover {
-    border-top: 1px solid #e2e2e2;
-    border-bottom: 1px solid #e2e2e2;
-  }
   .admin_panel .main_section .notes_main {
     -ms-grid-row: 1;
     -ms-grid-column: 2;
@@ -808,6 +790,16 @@
             transform: scale(0);
     -webkit-animation-delay: 1.5s;
             animation-delay: 1.5s;
+  }
+  @-webkit-keyframes fadeBox {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
   }
   @keyframes fadeBox {
     0% {
@@ -863,8 +855,8 @@
     display: -ms-grid;
     display: grid;
         grid-template-areas: 'notes_left notes_center notes_right';
-    -ms-grid-columns: 30px 1fr 150px;
-        grid-template-columns: 30px 1fr 150px;
+    -ms-grid-columns: 30px 1fr 120px;
+        grid-template-columns: 30px 1fr 120px;
     grid-gap: 10px;
   }
   .admin_panel .main_section .notes_main .notes_content .notes_text .notes_left {
@@ -903,14 +895,10 @@
     -ms-grid-column: 3;
     grid-area: notes_right;
   }
-  .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .note_label_wrapper {
-    width: 22px;
-  }
   .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .delete_note {
     cursor: pointer;
     display: none;
     color: #F44336;
-    font-size: 18px;
   }
   .admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .completed_task {
     display: block;

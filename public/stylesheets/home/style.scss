@@ -217,7 +217,6 @@
                     .notes_right{
                         grid-area: notes_right;
                         .note_label_wrapper{
-                            width: 100px;
                             float: right;
                         }
                         .delete_note{
@@ -225,7 +224,7 @@
                             cursor: pointer;
                             display: none;
                             color: #F44336;
-                            font-size: 18px;
+                            // font-size: 16px;
                         }
                         .completed_task{
                             display: block;

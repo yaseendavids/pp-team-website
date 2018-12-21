@@ -27,86 +27,6 @@ and (max-width:1500px){
                 background: #555;
             }
 
-            // ************** WEATHER MAIN **************
-            .weather_main{
-                grid-area: weather_main;
-                @include panelBox();
-                @include fadeBox();
-                height: 340px;
-                color: $boxHeaderColor;
-
-                // ************** WEATHER HEADER **************
-                .weather_header{
-                    @include boxHeaderSection();
-                }
-
-                //  WEATHER CONTENT
-                .weather_content{
-                    padding: 10px;
-                    margin-top: 5px;
-                    height: 100px;
-                    // WEATHER ICON
-                    .weather_sub{
-                        float: left;
-                        // WEATHER TEMPERATURE TEXT
-                        .weather_temp_text{
-                            font-weight: 600;
-                            margin-top: 15px;
-                            margin-right: 10px;
-                            float: left;
-                            font-size: 25px;
-                        }
-                        // WEATHER CONDITION
-                        .weather_condition{
-                            font-size: 18px;
-                            color: $boxTextColor;
-                        }
-                    }
-                    // CALENDER
-                    .today_calender{
-                        float: right;
-                        p{
-                            position: relative;
-                            bottom: 0;
-                            font-weight: 600;
-                            font-size: 18px;
-                        }
-                        .today_day{
-                            margin-top: 30px;
-                        }
-                        // TODAY'S DATE
-                        .today_date{
-                            margin-top: 10px;
-                            color: $boxTextColor;
-                            font-weight: lighter;
-                        }
-                    }
-                }
-                // WEATHER ADDITIONAL
-                .weather_additional{
-                    margin-top: 10px;
-                    p{
-                        padding: 10px;
-                    }
-                    span{
-                        float: right;
-                    }
-                    // WIND SPEED
-                    .wind_speed{
-                        border-top: 1px solid #e2e2e2;
-                    }
-                    // HUMIDITY
-                    .humidity{
-                        border-top: 1px solid #e2e2e2;
-                    }
-                    // CLOUD COVER
-                    .cloud_cover{
-                        border-top: 1px solid #e2e2e2;
-                        border-bottom: 1px solid #e2e2e2;
-                    }
-                }
-            }
-
             // NOTES MAIN
             .notes_main{
                 grid-area: notes_main;
@@ -152,7 +72,7 @@ and (max-width:1500px){
                         display: grid;
                         grid-template-areas: 'notes_left notes_center notes_right'
                         ;
-                        grid-template-columns: 30px 1fr 150px;
+                        grid-template-columns: 30px 1fr 120px;
                         grid-gap: 10px;
     
                         .notes_left{
@@ -184,14 +104,11 @@ and (max-width:1500px){
                         }
                         .notes_right{
                             grid-area: notes_right;
-                            .note_label_wrapper{
-                                width: 22px;
-                            }
                             .delete_note{
                                 cursor: pointer;
                                 display: none;
                                 color: #F44336;
-                                font-size: 18px;
+                                // font-size: 18px;
                             }
                             .completed_task{
                                 display: block;
