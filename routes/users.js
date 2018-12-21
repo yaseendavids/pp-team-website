@@ -4,6 +4,7 @@ var bcrypt = require('bcryptjs');
 var passport = require('passport');
 const TokenGenerator = require('uuid-token-generator');
 var cookieParser = require('cookie-parser');
+const logout = require('express-passport-logout');
 
 // Bring in User Model
 let User = require('../models/user');
@@ -122,10 +123,17 @@ router.post('/token/login', (req, res, next) => {
 })
 
 // Logout Proccess
-router.get('/logout', function(req, res){
-  req.logout();
-  req.flash('success', 'You are logged out');
-  res.redirect('/users/login');
+router.get('/logout', (req, res) => {
+  req.session.destroy( (err) => {
+    if (err){
+      console.log(err)
+    }
+    else{
+      req.logout();
+      req.flash('success', 'You are logged out');
+      res.redirect('/users/login');
+    }
+  })
 })
 
 module.exports = router;

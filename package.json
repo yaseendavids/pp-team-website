@@ -17,6 +17,7 @@
     "express": "~4.16.0",
     "express-back": "0.0.2",
     "express-messages": "^1.0.1",
+    "express-passport-logout": "^0.1.0",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.0",
     "http-errors": "~1.6.2",

@@ -76,7 +76,7 @@ router.get('*', function(req, res, next){
 router.get('/', ensureAuthenticated, function(req, res, next) {
 
   var newToken = res.locals.user.token;
-  var theToken = newToken.split("expires=Tue");
+  var theToken = newToken.split("=");
   var userToken = theToken[0];
 
   res.cookie(userToken, ";expires=Tue, 18 Feb 2025 00:00:00 UTC");
@@ -235,31 +235,35 @@ function ensureAuthenticated(req, res, next){
   var newToken = req.headers.cookie;
 
   if (newToken === null || newToken === "" || newToken == null){
+    console.log("No token");
     req.flash('danger', 'Please login');
     res.redirect('/users/login');
   }
 
   if (req.isAuthenticated()){
+    console.log("User Logged in already");
     return next();
   }
 
   else{
 
-    var theToken = newToken.split(";");
+    var theToken = newToken.split("=");
     var userToken = theToken[0];
 
     User.findOne({token: userToken}, (err, users) => {
       if (err){
+        console.log("Users don't have token");
         console.log(err);
         res.redirect('/users/login');
       }
       else{
         if (users === null || users === ""){
-          console.log(err);
+          console.log(users);
           res.redirect('/users/register');
         }
         else{
           if (users.token == userToken){
+            console.log("User token equals to cookie");
             res.render('tokenlogin', {
               header: "Logging In",
               username: users.username,
