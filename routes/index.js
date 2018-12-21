@@ -228,12 +228,11 @@ function ensureAuthenticated(req, res, next){
 
   let errors = req.validationErrors();
 
-  var newToken = res.cookie + '',
-  theToken = newToken.split("expires=Tue"),
-  userToken = theToken[0];
+  var newToken = req.headers.cookie;
+  var theToken = newToken.split("expires=Tue");
+  var userToken = theToken[0];
 
-  console.log(theToken)
-  console.log(userToken)
+  console.log(theToken[0]);
 
   if (userToken === null || userToken === "" || userToken == null){
     req.flash('danger', 'Please login');
