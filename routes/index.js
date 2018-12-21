@@ -230,7 +230,7 @@ function ensureAuthenticated(req, res, next){
 
   var newToken = req.headers.cookie;
 
-  if (userToken === null || userToken === "" || userToken == null){
+  if (newToken === null || newToken === "" || newToken == null){
     req.flash('danger', 'Please login');
     res.redirect('/users/login');
   }
