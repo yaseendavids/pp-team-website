@@ -225,7 +225,7 @@ router.get('/hr-policy', ensureAuthenticated, function(req, res, next){
 function ensureAuthenticated(req, res, next){
 
   let errors = req.validationErrors();
-  var userToken =  localStorage.getItem("token");
+  var userToken = res.cookie;
 
   if (userToken === null || userToken === "" || userToken == null){
     req.flash('danger', 'Please login');
