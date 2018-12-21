@@ -229,10 +229,6 @@ function ensureAuthenticated(req, res, next){
   let errors = req.validationErrors();
 
   var newToken = req.headers.cookie;
-  var theToken = newToken.split("expires=Tue");
-  var userToken = theToken[0];
-
-  console.log(theToken[0]);
 
   if (userToken === null || userToken === "" || userToken == null){
     req.flash('danger', 'Please login');
@@ -244,6 +240,10 @@ function ensureAuthenticated(req, res, next){
   }
 
   else{
+
+    var theToken = newToken.split("expires=Tue");
+    var userToken = theToken[0];
+
     User.findOne({token: userToken}, (err, users) => {
       if (err){
         console.log(err);
