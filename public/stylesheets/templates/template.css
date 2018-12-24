@@ -228,6 +228,11 @@
   margin-top: 10px;
 }
 
+.admin_panel .left_nav .feedback_link {
+  position: relative;
+  bottom: 0;
+}
+
 .admin_panel .left_nav .left_nav_links {
   display: -ms-grid;
   display: grid;

@@ -226,6 +226,14 @@ router.get('/hr-policy', ensureAuthenticated, function(req, res, next){
     header: "HR Policy"
   });
 });
+
+router.get('/feedback', ensureAuthenticated, function(req,res,rext){
+
+  res.render('feedback', {
+    header: "Feedback"
+  });
+  
+})
  
 // ************** Access control **************
 function ensureAuthenticated(req, res, next){
