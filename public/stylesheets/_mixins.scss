@@ -63,3 +63,14 @@
         box-shadow: 0 0 10px $boxHeaderColor;
     }
 }
+@mixin scrollbar{
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #ffffff;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #555;
+    }
+}

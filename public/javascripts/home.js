@@ -18,7 +18,6 @@ $(document).ready(function(){
         $(".today_day").text(dayText);
         $(".today_date").text(dateText);
     }
-
     getDate();
      
     // ******************** WEATHER API ********************
@@ -29,9 +28,7 @@ $(document).ready(function(){
         url: url,
         method: "GET",
         success: function(result){
-
             console.log(result);
-
             $(".weather_temp_text").text(result.current.temp_c + "°C");
             $(".weather_condition").text(result.current.condition.text);
             $(".wind_text").text(result.current.wind_kph + " km/h");
@@ -41,22 +38,11 @@ $(document).ready(function(){
         }
     })
 
-    $(".notes_btn").on('click', function(){
-        $(".modal_wrapper").fadeIn("slow");
-        $("#modal_main").css("transform", "scale(1)");
-    });
-    $(".close_modal").on('click', function(){
-        $(".modal_wrapper").fadeOut("slow");
-        $("#modal_main").css("transform", "scale(0)");
-    });
-
-
     // ******************** DELETE NOTE ********************
     $('.delete_note').on('click', function(e){
 
         // Confirmation message
         let confirmDelete = confirm("Are you sure you want to delete the note ?");
-
         if (confirmDelete == true){
             // target event
             let target = $(this);
@@ -80,16 +66,15 @@ $(document).ready(function(){
             $(".loading_wrapper").fadeOut("fast");
         }
 
-      });
+    });
 
+    // ******************** CHECK IF USER HAS NOTES ********************
     if ($(".notes_text").hasClass("visible")){
         console.log("There are tasks")
     }
     else{
         $("#notes_length").text("You have no tasks. To add a task, click the Add Task button.")
     }
-
-    // https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=b04c0503ef41477cba37485ef01b7a7b
 
     // ******************** NEWS API ********************
     var newsURL = 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=b04c0503ef41477cba37485ef01b7a7b';

@@ -49,15 +49,7 @@
         background: #F9FAFB;
         overflow-y: scroll;
         overflow-x: hidden;
-        &::-webkit-scrollbar {
-            width: 10px;
-        }
-        &::-webkit-scrollbar-track {
-            background: #ffffff;
-        }
-        &::-webkit-scrollbar-thumb {
-            background: #555;
-        }
+        @include scrollbar();
 
         // ************** WEATHER MAIN **************
         .weather_main{
@@ -182,11 +174,12 @@
                     border-top: 1px solid #e2e2e2;
                     padding: 8px;
                     display: grid;
-                    grid-template-areas: 'notes_left notes_center notes_right'
+                    grid-template-areas: 'notes_right notes_center notes_left'
                     ;
-                    grid-template-columns: 30px 1fr 120px;
+                    grid-template-columns: 90px 1fr 50px;
                     grid-gap: 10px;
 
+                    // NOTES LEFT
                     .notes_left{
                         grid-area: notes_left;
                         // NOTES COMPLETE
@@ -205,47 +198,39 @@
                                 color: #f16311;
                             }
                         }
+                        .delete_note{
+                            float: right;
+                            cursor: pointer;
+                            display: none;
+                            color: #F44336;
+                        }
+                        .completed_task{
+                            display: block;
+                        }
                         .note_icon{
                             cursor: pointer;
                             padding: 2px;
                             border: 2px solid $boxTextColor;
                         }
+                        &:hover{
+                            .delete_note{
+                                display: block;
+                            }
+                        }
                     }
+                    // NOTES CENTER
                     .notes_center{
                         grid-area: notes_center;
                     }
+                    // NOTES RIGHT BUT ACTUALLY LEFT
                     .notes_right{
                         grid-area: notes_right;
                         .note_label_wrapper{
-                            float: right;
-                        }
-                        .delete_note{
                             float: left;
-                            cursor: pointer;
-                            display: none;
-                            color: #F44336;
-                            // font-size: 16px;
-                        }
-                        .completed_task{
-                            display: block;
-                        }
-                    }
-
-                    &:hover{
-                        .delete_note{
-                            display: block;
                         }
                     }
                 }
-                &::-webkit-scrollbar {
-                    width: 10px;
-                }
-                &::-webkit-scrollbar-track {
-                    background: #ffffff;
-                }
-                &::-webkit-scrollbar-thumb {
-                    background: #555;
-                }
+                @include scrollbar();
             }
         }
         .news_main{
@@ -304,15 +289,7 @@
                         }
                     }
                 }
-                &::-webkit-scrollbar {
-                    width: 10px;
-                }
-                &::-webkit-scrollbar-track {
-                    background: #ffffff;
-                }
-                &::-webkit-scrollbar-thumb {
-                    background: #555;
-                }
+                @include scrollbar();
             }
         }
     }

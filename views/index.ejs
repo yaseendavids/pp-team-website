@@ -98,26 +98,26 @@
                                             <p class="notes_text visible">
                                                 <span class="notes_left">
                                                     <a href="/redo-note/<%=  notes[i].id %>"><i class="fas fa-check note_complete note_icon disabled"></i></a>
+                                                    <span class="delete_note completed_task disabled" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                                 <span class="notes_center">
                                                         <span class="notes_notes"><%= notes[i].note %></span>
                                                 </span>
                                                 <span class="notes_right">
                                                     <span class="note_label_wrapper"><span class="<%= notes[i].importance %> note_label"><%= notes[i].importance %></span></span>
-                                                     <span class="delete_note completed_task disabled" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                             </p>
                                         <% } else { %>
                                             <p class="notes_text visible">
                                                 <span class="notes_left">
                                                     <a href="/completed/<%=  notes[i].id %>"><i class="fas fa-check note_check note_icon disabled"></i></a>
+                                                    <span class="delete_note disabled" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                                 <span class="notes_center">
                                                     <span class="notes_notes"><%= notes[i].note %></span>
                                                 </span>
                                                 <span class="notes_right">
                                                     <span class="note_label_wrapper"><span class="<%= notes[i].importance %> note_label"><%= notes[i].importance %></span></span>
-                                                    <span class="delete_note disabled" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                             </p>
                                         <% } %>

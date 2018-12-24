@@ -17,14 +17,88 @@ and (max-width:1500px){
             background: #F9FAFB;
             overflow-y: scroll;
             overflow-x: hidden;
-            &::-webkit-scrollbar {
-                width: 10px;
-            }
-            &::-webkit-scrollbar-track {
-                background: #ffffff;
-            }
-            &::-webkit-scrollbar-thumb {
-                background: #555;
+            @include scrollbar();
+
+            // ************** WEATHER MAIN **************
+            .weather_main{
+                grid-area: weather_main;
+                @include panelBox();
+                @include fadeBox();
+                height: 340px;
+                color: $boxHeaderColor;
+
+                // ************** WEATHER HEADER **************
+                .weather_header{
+                    @include boxHeaderSection();
+                }
+
+                //  WEATHER CONTENT
+                .weather_content{
+                    padding: 5px;
+                    margin-right: 20px;
+                    margin-left: 20px;
+                    margin-top: 5px;
+                    height: 100px;
+                    // WEATHER ICON
+                    .weather_sub{
+                        float: left;
+                        // WEATHER TEMPERATURE TEXT
+                        .weather_temp_text{
+                            font-weight: 600;
+                            margin-top: 15px;
+                            margin-right: 10px;
+                            float: left;
+                            font-size: 25px;
+                        }
+                        // WEATHER CONDITION
+                        .weather_condition{
+                            font-size: 18px;
+                            color: $boxTextColor;
+                        }
+                    }
+                    // CALENDER
+                    .today_calender{
+                        float: right;
+                        p{
+                            position: relative;
+                            bottom: 0;
+                            font-weight: 600;
+                            font-size: 18px;
+                        }
+                        .today_day{
+                            margin-top: 30px;
+                        }
+                        // TODAY'S DATE
+                        .today_date{
+                            margin-top: 10px;
+                            color: $boxTextColor;
+                            font-weight: lighter;
+                        }
+                    }
+                }
+                // WEATHER ADDITIONAL
+                .weather_additional{
+                    margin-top: 10px;
+                    p{
+                        padding: 10px;
+                    }
+                    span{
+                        float: right;
+                    }
+                    // WIND SPEED
+                    .wind_speed{
+                        border-top: 1px solid #e2e2e2;
+                    }
+                    // HUMIDITY
+                    .humidity{
+                        border-top: 1px solid #e2e2e2;
+                    }
+                    // CLOUD COVER
+                    .cloud_cover{
+                        border-top: 1px solid #e2e2e2;
+                        border-bottom: 1px solid #e2e2e2;
+                    }
+                }
             }
 
             // NOTES MAIN
@@ -55,8 +129,8 @@ and (max-width:1500px){
                 }
                 // NOTES CONTENT
                 .notes_content{
-                    padding: 10px;
-                    margin-top: 20px;
+                    padding: 5px;
+                    margin-top: 10px;
                     height: 240px;
                     overflow-y: scroll;
                     overflow-x: hidden;
@@ -70,11 +144,12 @@ and (max-width:1500px){
                         border-top: 1px solid #e2e2e2;
                         padding: 8px;
                         display: grid;
-                        grid-template-areas: 'notes_left notes_center notes_right'
+                        grid-template-areas: 'notes_right notes_center notes_left'
                         ;
-                        grid-template-columns: 30px 1fr 120px;
+                        grid-template-columns: 90px 1fr 50px;
                         grid-gap: 10px;
-    
+
+                        // NOTES LEFT
                         .notes_left{
                             grid-area: notes_left;
                             // NOTES COMPLETE
@@ -93,43 +168,39 @@ and (max-width:1500px){
                                     color: #f16311;
                                 }
                             }
+                            .delete_note{
+                                float: right;
+                                cursor: pointer;
+                                display: none;
+                                color: #F44336;
+                            }
+                            .completed_task{
+                                display: block;
+                            }
                             .note_icon{
                                 cursor: pointer;
                                 padding: 2px;
                                 border: 2px solid $boxTextColor;
                             }
+                            &:hover{
+                                .delete_note{
+                                    display: block;
+                                }
+                            }
                         }
+                        // NOTES CENTER
                         .notes_center{
                             grid-area: notes_center;
                         }
+                        // NOTES RIGHT BUT ACTUALLY LEFT
                         .notes_right{
                             grid-area: notes_right;
-                            .delete_note{
-                                cursor: pointer;
-                                display: none;
-                                color: #F44336;
-                                // font-size: 18px;
-                            }
-                            .completed_task{
-                                display: block;
-                            }
-                        }
-    
-                        &:hover{
-                            .delete_note{
-                                display: block;
+                            .note_label_wrapper{
+                                float: left;
                             }
                         }
                     }
-                    &::-webkit-scrollbar {
-                        width: 10px;
-                    }
-                    &::-webkit-scrollbar-track {
-                        background: #ffffff;
-                    }
-                    &::-webkit-scrollbar-thumb {
-                        background: #555;
-                    }
+                    @include scrollbar();
                 }
             }
             .news_main{
@@ -189,15 +260,7 @@ and (max-width:1500px){
                             }
                         }
                     }
-                    &::-webkit-scrollbar {
-                        width: 10px;
-                    }
-                    &::-webkit-scrollbar-track {
-                        background: #ffffff;
-                    }
-                    &::-webkit-scrollbar-thumb {
-                        background: #555;
-                    }
+                    @include scrollbar();
                 }
             }
         }
