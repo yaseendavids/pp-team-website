@@ -43,18 +43,24 @@
 
                 <i class="fas fa-user login_icon"></i>
                 <input type="text" name="username" placeholder="Username" autofocus autocomplete="false">
-                <br><br>
+                <br>
+                <span class="user_error"></span>
+                <br>
                 <i class="fas fa-envelope login_icon"></i>
                 <input type="email" name="email" placeholder="Email Address">
-                <br><br>
+                <br>
+                <span class="email_error"></span>
+                <br>
                 <i class="fas fa-lock login_icon"></i>
                 <input type="password" name="password" placeholder="Password">
                 <br><br>
                 <i class="fas fa-lock login_icon"></i>
                 <input type="password" name="password2" placeholder="Confirm Password">
-                <br><br>
+                <br>
+                <span class="pass_error"></span>
+                <br>
 
-                <button class="login-btn"><%= header %></button>
+                <button type="submit" class="login-btn"><%= header %></button>
                 <p>Already have an account? <a href="/users/login">Login</a></p>
 
             </form>
@@ -64,6 +70,7 @@
 
     <script src="/javascripts/jquery.js"></script>
     <script src="/javascripts/script.js"></script>
+    <script src="/javascripts/register_validation.js"></script>
     <script src="/assets/Hover-Plate-Effect/jquery.plate.js"></script>
     
     <script>
