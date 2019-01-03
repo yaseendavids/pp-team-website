@@ -13,7 +13,7 @@ $(document).ready(function(){
         var monthsOfYear = ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Nov', 'Dec'];
 
         dayText = daysOfWeek[day - 1];
-        dateText = monthsOfYear[month -1] + ", " + theDate + " " +  year;
+        dateText = monthsOfYear[month] + ", " + theDate + " " +  year;
 
         $(".today_day").text(dayText);
         $(".today_date").text(dateText);

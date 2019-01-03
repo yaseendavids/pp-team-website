@@ -8,6 +8,7 @@ $(document).ready(function(){
     var confirmInput = $("input[name=password2]");
     var errorText = $(".user_error");
     var submitBtn = $("button[type=submit]");
+    var registerErrMsg = $("span").text();
 
     $.ajax({
         url: userUrl,
@@ -42,8 +43,10 @@ $(document).ready(function(){
                 else{
                     $(".user_error").text("");
                     $(".fa-user").css("color", "green");
-                    $(submitBtn).prop('disabled', false);
-                    $(submitBtn).css('background', '#57b846');
+                    if ($(".user_error").text() == "" && $(".pass_error").text() == "" && $(".email_error").text() == ""){
+                        $(submitBtn).prop('disabled', false);
+                        $(submitBtn).css('background', '#57b846');
+                    }
                 }
             }
         })
@@ -65,8 +68,10 @@ $(document).ready(function(){
                 else{
                     $(".email_error").text("");
                     $(".fa-envelope").css("color", "green");
-                    $(submitBtn).prop('disabled', false);
-                    $(submitBtn).css('background', '#57b846');
+                    if ($(".user_error").text() == "" && $(".pass_error").text() == "" && $(".email_error").text() == ""){
+                        $(submitBtn).prop('disabled', false);
+                        $(submitBtn).css('background', '#57b846');
+                    }
                 }
             }
         })
@@ -86,8 +91,10 @@ $(document).ready(function(){
         else{
             $(".pass_error").text("");
             $(".fa-lock").css("color", "green");
-            $(submitBtn).prop('disabled', false);
-            $(submitBtn).css('background', '#57b846');
+            if ($(".user_error").text() == "" && $(".pass_error").text() == "" && $(".email_error").text() == ""){
+                $(submitBtn).prop('disabled', false);
+                $(submitBtn).css('background', '#57b846');
+            }
         }
     })
     
