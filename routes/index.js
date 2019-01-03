@@ -112,8 +112,7 @@ router.get('/completed/:id', ensureAuthenticated, function(req, res, next){
       console.log(err)
     }
     else{
-      req.flash("success",  "Task completed");
-      res.redirect('/');
+      return;
     }
   })
 });
@@ -130,7 +129,7 @@ router.get('/redo-note/:id', ensureAuthenticated, function(req, res, next){
       console.log(err)
     }
     else{
-      res.redirect('/');
+      return;
     }
   })
 });
@@ -151,8 +150,6 @@ router.delete('/delete-note/:id', ensureAuthenticated, function(req, res, next){
           console.log(err);
           return;
         }
-        req.flash('success', "Task Deleted");
-        res.send("Successfully deleted Note");
       })
     }
   });

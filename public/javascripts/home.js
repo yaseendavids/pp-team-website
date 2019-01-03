@@ -39,7 +39,10 @@ $(document).ready(function(){
     })
 
     // ******************** DELETE NOTE ********************
+
     $('.delete_note').on('click', function(e){
+
+        $(this).closest("p").remove();
 
         // Confirmation message
         let confirmDelete = confirm("Are you sure you want to delete the note ?");
@@ -48,24 +51,69 @@ $(document).ready(function(){
             let target = $(this);
             // Data attrib of button
             const id = target.attr('data-id');
-            console.log(id);
 
             // Ajax function
             $.ajax({
                 method: 'DELETE',
                 url: '/delete-note/'+id,
                 success: function(response){
-                    window.location.href="/";
+                    console.log("Task deleted")
                 },
                 error: function(err){
                     console.log(err);
                 }
             });
         }
-        else {
-            $(".loading_wrapper").fadeOut("fast");
-        }
 
+    });
+
+    // **************** MARK TASK AS COMPLETE OR NOT COMPLETE ****************
+
+    $('.note_icon').on('click', function(e){
+
+        // IF TASK IS NOT COMPLETE, MARK AS COMPLETE
+
+        if ($(this).hasClass("note_check")){
+
+            $(this).addClass("note_complete");
+            $(this).closest(".notes_left").find(".delete_note").addClass("completed_task");
+            $(this).removeClass("note_check");
+
+            let target = $(this);
+            const id = target.attr('data-id');
+            
+            $.ajax({
+                method: 'GET',
+                url: '/completed/'+id,
+                success: function(response){
+                    console.log("Task updated")
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        // IF TASK IS COMPLETE, MARK AS NOT COMPLETE
+        else if ($(this).hasClass("note_complete")){
+
+            $(this).addClass("note_check");
+            $(this).closest(".notes_left").find(".delete_note").removeClass("completed_task");
+            $(this).removeClass("note_complete");
+    
+            let target = $(this);
+            const id = target.attr('data-id');
+
+            $.ajax({
+                method: 'GET',
+                url: '/redo-note/'+id,
+                success: function(response){
+                    console.log("Task updated")
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
     });
 
     // ******************** CHECK IF USER HAS NOTES ********************

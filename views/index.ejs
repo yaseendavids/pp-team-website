@@ -97,8 +97,8 @@
                                         <% if (notes[i].completed == 'true') { %>
                                             <p class="notes_text visible">
                                                 <span class="notes_left">
-                                                    <a href="/redo-note/<%=  notes[i].id %>"><i class="fas fa-check note_complete note_icon disabled"></i></a>
-                                                    <span class="delete_note completed_task disabled" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
+                                                    <span><i data-id="<%= notes[i].id %>" class="fas fa-check note_complete note_icon"></i></span>
+                                                    <span class="delete_note completed_task" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                                 <span class="notes_center">
                                                         <span class="notes_notes"><%= notes[i].note %></span>
@@ -110,8 +110,8 @@
                                         <% } else { %>
                                             <p class="notes_text visible">
                                                 <span class="notes_left">
-                                                    <a href="/completed/<%=  notes[i].id %>"><i class="fas fa-check note_check note_icon disabled"></i></a>
-                                                    <span class="delete_note disabled" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
+                                                    <span><i data-id="<%= notes[i].id %>" class="fas fa-check note_check note_icon"></i></span>
+                                                    <span class="delete_note" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                                 <span class="notes_center">
                                                     <span class="notes_notes"><%= notes[i].note %></span>
