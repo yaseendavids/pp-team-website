@@ -216,6 +216,33 @@ router.post('/calendar-form', ensureAuthenticated, function(req, res, next){
   })
 })
 
+// ************** REMOVE  NOTE CHECK **************
+router.post('/calendar-edit', ensureAuthenticated, function(req, res, next){
+
+  var date = {};
+
+  date.title = req.body.edit_fullname + " - " + req.body.edit_leave;
+  date.start = req.body.edit_startdate;
+  date.end = req.body.edit_enddate;
+  date.color = req.body.edit_color;
+
+  var dateID = req.body.edit_id;
+  console.log(dateID)
+  console.log(req.body.edit_fullname)
+  console.log(req.body.edit_startdate)
+  console.log(req.body.edit_color)
+  let query = {_id: dateID};
+
+  Calendar.update(query, date , function(err){
+    if (err) {
+      console.log(err)
+    }
+    else{
+      res.redirect('/calendar');
+    }
+  })
+});
+
 // ************** GET Hr Policy PAGE **************
 router.get('/hr-policy', ensureAuthenticated, function(req, res, next){
 

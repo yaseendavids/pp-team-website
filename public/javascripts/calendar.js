@@ -8,6 +8,7 @@ $(document).ready(function(){
   var theYear = theDate.getFullYear();
 
   console.log(theYear +"-" + theMonth + "-" + theDay)
+  var calendarYearDate = theYear +"-" + theMonth + "-" + theDay
 
   // ***************** START MAIN CALENDER WITH DATA FROM DB *****************
   $.ajax({
@@ -16,8 +17,9 @@ $(document).ready(function(){
     dataType: 'json',
     success: function(result){
       
+      // *************** CALENDAR ***************
       $('#calendar').fullCalendar({
-        defaultDate: '2018-12-11',
+        defaultDate: calendarYearDate,
         editable: true,
         eventLimit: true,
         events: result,
@@ -27,12 +29,31 @@ $(document).ready(function(){
           start: '9:00',
           end: '18:00',
         },
-        // select: function(resource){
-        //   console.log(resource);
-        // },
+        // *************** EVENT SELECT ***************
         eventSelect: function(){
           alert()
         },
+        // *************** EVENT CLICK ***************
+        eventClick: function(calEvent, jsEvent, view) {
+
+          var sources = calEvent.source.rawEventDefs;
+
+          for (let i = 0; i < sources.length; i++){
+            if (sources[i].title == calEvent.title){
+
+              var dateID  = sources[i]._id.$oid;
+              $(".modal_3_btn").click();
+
+              $(".modal_delete_btn").attr("data-id", dateID);
+              $(".modal_edit_btn").attr("data-id", dateID);
+
+            }
+          }
+          // change the border color just for fun
+          $(this).css('border-color', 'red');
+
+        },
+        // *************** EVENT DROP ***************
         eventDrop: function(event, delta, revertFunc){
           // alert(event.title + " was dropped on " + event.start.format() + " " + event.end.format());
           var confirmMove = confirm("Are you sure you want to move " + event.title + " to "+ event.start.format() + " - " + event.end.format());
@@ -56,12 +77,6 @@ $(document).ready(function(){
         }
         
       });
-
-      // $('.calendar_days').fullCalendar({
-      //   defaultView: 'listWeek',
-      //   events: result,
-      //  });
-
     }
   })
 
@@ -82,5 +97,60 @@ $(document).ready(function(){
     })
 
   }
+
+  $(".modal_delete_btn").on('click', () =>{
+
+    var eventID = $(".modal_delete_btn").attr("data-id");
+
+    var eventURL = 'https://api.mlab.com/api/1/databases/peach-users/collections/calendars/'+ eventID +'/?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1';
+    
+    $.ajax({
+      url: eventURL,
+      method: "DELETE",
+      async: true,
+		  timeout: 300000,
+      // dataType: 'json',
+      success: function(result){
+        console.log("Calendar event deleted");
+        window.location.href = "/calendar"
+      }
+    })
+  });
+
+  $(".modal_edit_btn").on('click', () => {
+
+    $(".close_modal").click();
+    $(".modal_4_btn").click();
+
+    var eventID = $('.modal_edit_btn').attr("data-id");
+    console.log(eventID)
+
+    var eventURL = 'https://api.mlab.com/api/1/databases/peach-users/collections/calendars/'+ eventID +'/?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1';
+    
+    $.ajax({
+      url: eventURL,
+      method: "GET",
+      // dataType: 'json',
+      success: function(result){
+        console.log("Calendar event editing");
+
+        console.log(result)
+
+        var title = result.title;
+        var fullname = title.split(" - ")[0];
+        var reason = title.split(" - ")[1];
+        var id = result._id.$oid;
+
+        $("#edit_id").val(id);
+        $("#edit_fullname").val(fullname);
+        $("#edit_leave").val(reason);
+        $("#edit_startdate").val(result.start);
+        $("#edit_enddate").val(result.end);
+        $("#edit_color").val(result.color);
+        
+      }
+    })
+
+  })
 
 });

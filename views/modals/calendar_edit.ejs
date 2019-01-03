@@ -1,37 +1,38 @@
 <!-- MODAL -->
 
-<div class="modal_wrapper modal_2" data-modal="modal_2">
+<div class="modal_wrapper modal_4" data-modal="modal_4">
     <div class="modal_main">
         <div class="modal_header">
             <h3>New Leave Date <i class="fab fa-pagelines"></i></h3>
             <i class="far fa-times-circle close_modal"></i>
         </div>
         <div class="modal_form">
-            <form method="POST" action="/calendar-form">
+            <form method="POST" action="/calendar-edit">
+                <input type="hidden" id="edit_id" name="edit_id">
                 <div class="input_box">
                     <label>Full Name:</label>
                     <br>
-                    <input type="text" name="username" placeholder="Enter your username" autofocus autocomplete="off" spellcheck="false" required>
+                    <input type="text" id="edit_fullname" name="edit_fullname" placeholder="Loading..." autofocus autocomplete="off" spellcheck="false" required>
                 </div>
                 <div class="input_box">
                     <label for="title">Reason for leave</label>
                     <br>
-                    <input type="text" name="title" placeholder="Enter your reason" autocomplete="off" required>
+                    <input type="text" id="edit_leave" name="edit_leave" placeholder="Loading..." autocomplete="off" required>
                 </div>
                 <div class="input_box">
                     <label for="startDate">Start Date</label>
                     <br>
-                    <input class="calendar_date" type="date" name="startDate" autocomplete="off" required>
+                    <input class="calendar_date" id="edit_startdate" type="date" name="edit_startdate" autocomplete="off" required>
                 </div>
                 <div class="input_box">
                     <label for="endDate">End Date</label>
                     <br>
-                    <input class="calendar_date" type="date" name="endDate" autocomplete="off" required>
+                    <input class="calendar_date" id="edit_enddate" type="date" name="edit_enddate" autocomplete="off" required>
                 </div>
                 <div class="input_box">
                     <label for="color">Color</label>
                     <br>
-                    <input id="color_input" type="color" name="color" autocomplete="off" required>
+                    <input id="edit_color" type="color" name="edit_color" autocomplete="off" required>
                 </div>
                 <button class="button_calendar disabled" type="submit">Submit <i class="fas fa-arrow-right submit_arrow"></i></button>
             </form>

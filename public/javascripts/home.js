@@ -42,11 +42,11 @@ $(document).ready(function(){
 
     $('.delete_note').on('click', function(e){
 
-        $(this).closest("p").remove();
-
         // Confirmation message
         let confirmDelete = confirm("Are you sure you want to delete the note ?");
         if (confirmDelete == true){
+            
+            $(this).closest("p").remove();
             // target event
             let target = $(this);
             // Data attrib of button
