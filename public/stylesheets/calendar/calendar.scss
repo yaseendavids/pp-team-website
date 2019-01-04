@@ -8,7 +8,6 @@
         @include greenBtn();
         @include fadeBox();
         animation-delay: 1.5s;
-        // margin-top: 50px;
         position: absolute;
         left: 800px;
         top: 97px;
@@ -28,39 +27,7 @@
             @include panelBox();
             padding: 10px;
             width: 1022px;
-            @include fadeBox();
             text-align: center;
         }
-        // .calendar_form{
-        //     grid-area: calendar_form;
-        //     @include panelBox();
-        //     float: left;
-        //     padding: 5px;
-        //     @include fadeBox();
-        //     animation-delay: 1.5s;
-        //     text-align: center;
-
-            // .calendar_days{
-            //     table{
-            //         thead{
-            //             tr{
-            //                 background: #cecece;
-            //                 th{
-            //                     text-align: left;
-            //                     padding: 5px;
-            //                 }
-            //             }
-            //         }
-            //         tbody{
-            //             border: 1px solid #cecece;
-            //             tr{
-            //                 padding: 5px;
-            //                 text-align: left;
-            //             }
-            //         }
-            //     }
-            // }
-
-        // }
     }
 }

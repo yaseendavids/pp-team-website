@@ -30,6 +30,7 @@
             </div>
 
             <%- include('./modals/task_modal', locals) %>
+            <%- include('./modals/task_edit', locals) %>
 
             <!-- This is the Message -->
             <%- messages('message', locals) %>
@@ -101,7 +102,7 @@
                                                     <span class="delete_note completed_task" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                                 <span class="notes_center">
-                                                        <span class="notes_notes"><%= notes[i].note %></span>
+                                                        <span data-id="<%= notes[i].id %>" class="notes_notes modal_btn" data-modal="modal_5"><%= notes[i].note %></span>
                                                 </span>
                                                 <span class="notes_right">
                                                     <span class="note_label_wrapper"><span class="<%= notes[i].importance %> note_label"><%= notes[i].importance %></span></span>
@@ -114,7 +115,7 @@
                                                     <span class="delete_note" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                                 <span class="notes_center">
-                                                    <span class="notes_notes"><%= notes[i].note %></span>
+                                                    <span data-id="<%= notes[i].id %>" class="notes_notes modal_btn" data-modal="modal_5"><%= notes[i].note %></span>
                                                 </span>
                                                 <span class="notes_right">
                                                     <span class="note_label_wrapper"><span class="<%= notes[i].importance %> note_label"><%= notes[i].importance %></span></span>

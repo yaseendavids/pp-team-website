@@ -23,7 +23,6 @@ and (max-width:1500px){
             .weather_main{
                 grid-area: weather_main;
                 @include panelBox();
-                @include fadeBox();
                 height: 340px;
                 color: $boxHeaderColor;
 
@@ -108,8 +107,6 @@ and (max-width:1500px){
                 height: 340px;
                 color: $boxHeaderColor;
                 position: relative;
-                @include fadeBox();
-                animation-delay: 1.5s;
                 
                 //  NOTES HEADER
                 .notes_header{
@@ -206,11 +203,9 @@ and (max-width:1500px){
             .news_main{
                 grid-area: news_main;
                 @include panelBox();
-                @include fadeBox();
                 height: 450px;
                 width: 170%;
                 color: $boxHeaderColor;
-                animation-delay: 2s;
 
                 .news_header{
                     @include boxHeaderSection();

@@ -72,7 +72,6 @@ $(document).ready(function(){
     $('.note_icon').on('click', function(e){
 
         // IF TASK IS NOT COMPLETE, MARK AS COMPLETE
-
         if ($(this).hasClass("note_check")){
 
             $(this).addClass("note_complete");
@@ -85,7 +84,7 @@ $(document).ready(function(){
             $.ajax({
                 method: 'GET',
                 url: '/completed/'+id,
-                success: function(response){
+                done: function(response){
                     console.log("Task updated")
                 },
                 error: function(err){
@@ -106,7 +105,7 @@ $(document).ready(function(){
             $.ajax({
                 method: 'GET',
                 url: '/redo-note/'+id,
-                success: function(response){
+                done: function(response){
                     console.log("Task updated")
                 },
                 error: function(err){
@@ -149,6 +148,30 @@ $(document).ready(function(){
                 );
             }
         }
+    })
+
+    // ******************** EDIT TASK********************
+    $(".notes_notes").on('click', function(){
+
+        let targetID = $(this).attr('data-id');
+        console.log(targetID)
+
+        let noteURL = "https://api.mlab.com/api/1/databases/peach-users/collections/notes/" + targetID +"/?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1"
+
+        // MAKE API CALL TO POST THE DATA TO THE EDIT TASK MODAL
+        $.ajax({
+            url: noteURL,
+            method: "GET",
+            success: (noteData) =>{
+
+                $("#note_id").val(noteData._id.$oid);
+                $("#note_username").val(noteData.username);
+                $("#note_edit").val(noteData.note);
+                $("#note_importance").val(noteData.importance);
+
+            }
+        })
+
     })
 
 })

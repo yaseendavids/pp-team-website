@@ -47,7 +47,7 @@
 }
 
 // CALENDER MODAL
-.modal_2, .modal_1, .modal_4{
+.modal_2, .modal_1, .modal_4, .modal_5{
     .modal_main{
         position: relative;
         .modal_form{
@@ -130,7 +130,7 @@
 .hideme{
     display: none;
 }
-.modal_1{
+.modal_1, .modal_5{
     .modal_main{
         height: 400px;
     }

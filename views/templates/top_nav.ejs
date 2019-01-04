@@ -5,6 +5,11 @@
     </div>
     <!-- PROFILE SECTION -->
     <div class="profile_section">
+        <!-- PROFILE USERNAME -->
+        <div class="profile_user">
+            <% var username = user.username.replace("-"," ") %>
+            <p><%= username %></p>
+        </div>
         <!-- PROFILE BUTTON -->
         <div class="profile_btn">
             <!-- PROFILE ICON -->
@@ -12,20 +17,17 @@
             <!-- PROFILE SECTION DROPDOWN -->
             <div class="profile_dropdown">
                 <!-- PROFILE BUTTON -->
-                <a href="">
-                    <div class="profile_view">
-                        <i class="fas fa-user-circle view"></i>
-                        <% var username = user.username.replace("-", " ") %>
-                        <p class="profile_username"><%= username %></p>
-                        <br>
-                        <span class="view_text">View Profile</span>
+                <a href="/profile" class="links_btn">
+                    <div class="links_box">
+                        <span>View Profile</span>
+                        <i class="fas fa-user-circle links_logo"></i>
                     </div>
                 </a>
                 <!-- LOGOUT BUTTON -->
-                <a href="/users/login" class="logout_btn">
-                    <div class="logout_box">
+                <a href="/users/login" class="links_btn">
+                    <div class="links_box">
                         <span>Logout</span>
-                        <i class="fas fa-sign-out-alt sign_out"></i>
+                        <i class="fas fa-sign-out-alt links_logo"></i>
                     </div>
                 </a>
             </div>

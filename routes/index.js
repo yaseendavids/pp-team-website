@@ -176,6 +176,29 @@ router.post('/add_new_note', ensureAuthenticated, function(req, res, next){
   })
 });
 
+// EDIT NOTE
+router.post('/edit_note', ensureAuthenticated, function(req, res, next){
+
+  var note = {};
+
+  note.username = req.body.username;
+  note.note = req.body.note;
+  note.importance = req.body.importance;
+  note.completed = req.body.completed;
+  var theID = req.body.id;
+
+  let query = {_id:theID};
+
+  Notes.update(query, note , function(err){
+    if (err) {
+      console.log(err)
+    }
+    else{
+      res.redirect("/");
+    }
+  })
+});
+
 // ************** GET Calender PAGE **************
 router.get('/calendar', ensureAuthenticated, function(req, res, next){
 
@@ -227,10 +250,6 @@ router.post('/calendar-edit', ensureAuthenticated, function(req, res, next){
   date.color = req.body.edit_color;
 
   var dateID = req.body.edit_id;
-  console.log(dateID)
-  console.log(req.body.edit_fullname)
-  console.log(req.body.edit_startdate)
-  console.log(req.body.edit_color)
   let query = {_id: dateID};
 
   Calendar.update(query, date , function(err){

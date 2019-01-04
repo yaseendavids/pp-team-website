@@ -55,7 +55,6 @@
         .weather_main{
             grid-area: weather_main;
             @include panelBox();
-            @include fadeBox();
             height: 340px;
             color: $boxHeaderColor;
 
@@ -138,8 +137,6 @@
             height: 340px;
             color: $boxHeaderColor;
             position: relative;
-            @include fadeBox();
-            animation-delay: 1.5s;
             
             //  NOTES HEADER
             .notes_header{
@@ -221,6 +218,10 @@
                     // NOTES CENTER
                     .notes_center{
                         grid-area: notes_center;
+                        cursor: pointer;
+                        &:hover{
+                            text-decoration: underline;
+                        }
                     }
                     // NOTES RIGHT BUT ACTUALLY LEFT
                     .notes_right{
@@ -236,10 +237,8 @@
         .news_main{
             grid-area: news_main;
             @include panelBox();
-            @include fadeBox();
             height: 450px;
             color: $boxHeaderColor;
-            animation-delay: 2s;
 
             .news_header{
                 @include boxHeaderSection();
