@@ -348,417 +348,107 @@
   margin-left: 10px;
 }
 
-@-webkit-keyframes fadeTimeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeTimeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.Urgent {
-  background: #F44336;
-  padding: 1px 20px;
-  color: white;
-  border-radius: 30px;
-  font-size: 12px;
-  margin-right: 5px;
-  text-decoration: none;
-  margin-top: 3px;
-}
-
-.Normal {
-  background: #00d312;
-  padding: 1px 20px;
-  color: white;
-  border-radius: 30px;
-  font-size: 12px;
-  margin-right: 5px;
-  text-decoration: none;
-  margin-top: 3px;
-}
-
-.None {
-  background: #0062d3;
-  padding: 1px 20px;
-  color: white;
-  border-radius: 30px;
-  font-size: 12px;
-  margin-right: 5px;
-  text-decoration: none;
-  margin-top: 3px;
-}
-
 .admin_panel .main_section {
   grid-area: main_section;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'weather_main notes_main' 'news_main .';
-  -ms-grid-columns: 1fr 60%;
-      grid-template-columns: 1fr 60%;
+      grid-template-areas: 'admin_users_main .';
+  -ms-grid-columns: 1fr 40%;
+      grid-template-columns: 1fr 40%;
   padding: 20px;
   grid-gap: 10px;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
-.admin_panel .main_section::-webkit-scrollbar {
-  width: 10px;
-}
-
-.admin_panel .main_section::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-.admin_panel .main_section::-webkit-scrollbar-thumb {
-  background: #555;
-}
-
-.admin_panel .main_section .weather_main {
+.admin_panel .main_section .admin_users_main {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  grid-area: weather_main;
+  grid-area: admin_users_main;
   background: #fff;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 10px #d8d8d8;
           box-shadow: 0px 0px 10px #d8d8d8;
   border: 1px solid rgba(212, 212, 212, 0.514);
-  height: 340px;
+  height: 400px;
   color: #555;
 }
 
-.admin_panel .main_section .weather_main .weather_header {
+.admin_panel .main_section .admin_users_main .admin_users_header {
   padding: 10px;
   background: #f0f0f0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.admin_panel .main_section .weather_main .weather_header p {
+.admin_panel .main_section .admin_users_main .admin_users_header p {
   font-weight: 600;
   font-size: 20px;
   color: #555;
 }
 
-.admin_panel .main_section .weather_main .weather_content {
+.admin_panel .main_section .admin_users_main .admin_users_content {
   padding: 10px;
   margin-top: 5px;
-  height: 100px;
+  overflow: scroll;
 }
 
-.admin_panel .main_section .weather_main .weather_content .weather_sub {
-  float: left;
-}
-
-.admin_panel .main_section .weather_main .weather_content .weather_sub .weather_temp_text {
-  font-weight: 600;
-  margin-top: 15px;
-  margin-right: 10px;
-  float: left;
-  font-size: 25px;
-}
-
-.admin_panel .main_section .weather_main .weather_content .weather_sub .weather_condition {
-  font-size: 18px;
-  color: #7C8695;
-}
-
-.admin_panel .main_section .weather_main .weather_content .today_calender {
-  float: right;
-}
-
-.admin_panel .main_section .weather_main .weather_content .today_calender p {
-  position: relative;
-  bottom: 0;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.admin_panel .main_section .weather_main .weather_content .today_calender .today_day {
-  margin-top: 30px;
-}
-
-.admin_panel .main_section .weather_main .weather_content .today_calender .today_date {
-  margin-top: 10px;
-  color: #7C8695;
-  font-weight: lighter;
-}
-
-.admin_panel .main_section .weather_main .weather_additional {
-  margin-top: 10px;
-}
-
-.admin_panel .main_section .weather_main .weather_additional p {
-  padding: 10px;
-}
-
-.admin_panel .main_section .weather_main .weather_additional span {
-  float: right;
-}
-
-.admin_panel .main_section .weather_main .weather_additional .wind_speed {
-  border-top: 1px solid #e2e2e2;
-}
-
-.admin_panel .main_section .weather_main .weather_additional .humidity {
-  border-top: 1px solid #e2e2e2;
-}
-
-.admin_panel .main_section .weather_main .weather_additional .cloud_cover {
-  border-top: 1px solid #e2e2e2;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-.admin_panel .main_section .notes_main {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: notes_main;
-  background: #fff;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 10px #d8d8d8;
-          box-shadow: 0px 0px 10px #d8d8d8;
-  border: 1px solid rgba(212, 212, 212, 0.514);
-  height: 340px;
-  color: #555;
-  position: relative;
-}
-
-.admin_panel .main_section .notes_main .notes_header {
-  padding: 10px;
-  background: #f0f0f0;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.admin_panel .main_section .notes_main .notes_header p {
-  font-weight: 600;
-  font-size: 20px;
-  color: #555;
-}
-
-.admin_panel .main_section .notes_main .notes_btn {
-  position: absolute;
-  top: 7px;
-  right: 20px;
-  border: none;
-  outline: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0.4rem 1rem;
-  border: 1px solid green;
-  font-size: 14px;
-  color: white;
-  background: green;
-  border-radius: 3px;
-}
-
-.admin_panel .main_section .notes_main .notes_content {
-  padding: 10px;
-  margin-top: 20px;
-  height: 240px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  color: #7C8695;
-}
-
-.admin_panel .main_section .notes_main .notes_content a {
-  text-decoration: none;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text {
-  color: #7C8695;
-  border-top: 1px solid #e2e2e2;
-  padding: 8px;
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: 'notes_right notes_center notes_left';
-  -ms-grid-columns: 90px 1fr 50px;
-      grid-template-columns: 90px 1fr 50px;
-  grid-gap: 10px;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-  grid-area: notes_left;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_complete {
-  color: #f16311;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_complete:hover {
-  color: transparent;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_check {
-  color: transparent;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_check:hover {
-  color: #f16311;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .delete_note {
-  float: right;
-  cursor: pointer;
-  display: none;
-  color: #F44336;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .completed_task {
-  display: block;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left .note_icon {
-  cursor: pointer;
-  padding: 2px;
-  border: 2px solid #7C8695;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_left:hover .delete_note {
-  display: block;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_center {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: notes_center;
-  cursor: pointer;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_center:hover {
-  text-decoration: underline;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_right {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: notes_right;
-}
-
-.admin_panel .main_section .notes_main .notes_content .notes_text .notes_right .note_label_wrapper {
-  float: left;
-}
-
-.admin_panel .main_section .notes_main .notes_content::-webkit-scrollbar {
+.admin_panel .main_section .admin_users_main .admin_users_content::-webkit-scrollbar {
   width: 10px;
 }
 
-.admin_panel .main_section .notes_main .notes_content::-webkit-scrollbar-track {
+.admin_panel .main_section .admin_users_main .admin_users_content::-webkit-scrollbar-track {
   background: #ffffff;
 }
 
-.admin_panel .main_section .notes_main .notes_content::-webkit-scrollbar-thumb {
+.admin_panel .main_section .admin_users_main .admin_users_content::-webkit-scrollbar-thumb {
   background: #555;
 }
 
-.admin_panel .main_section .news_main {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: news_main;
-  background: #fff;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 10px #d8d8d8;
-          box-shadow: 0px 0px 10px #d8d8d8;
-  border: 1px solid rgba(212, 212, 212, 0.514);
-  height: 450px;
-  color: #555;
-}
-
-.admin_panel .main_section .news_main .news_header {
-  padding: 10px;
-  background: #f0f0f0;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.admin_panel .main_section .news_main .news_header p {
-  font-weight: 600;
-  font-size: 20px;
-  color: #555;
-}
-
-.admin_panel .main_section .news_main .news_content {
-  height: 380px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: 5px;
-}
-
-.admin_panel .main_section .news_main .news_content .news_box {
-  height: 140px;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table {
+  border-collapse: collapse;
   width: 100%;
-  margin-bottom: 10px;
 }
 
-.admin_panel .main_section .news_main .news_content .news_box .news_image {
-  float: left;
-  width: 35%;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
 }
 
-.admin_panel .main_section .news_main .news_content .news_box .news_image img {
-  height: 140px;
-  width: 190px;
-  border-radius: 5px;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr .fa-times {
+  color: red;
 }
 
-.admin_panel .main_section .news_main .news_content .news_box .news_text {
-  position: relative;
-  float: left;
-  width: 60%;
-  height: 150px;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr .fa-check {
+  color: green;
 }
 
-.admin_panel .main_section .news_main .news_content .news_box .news_text a {
-  text-decoration: none;
-  color: #7C8695;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr .isAdmin i {
+  margin-left: 15px;
 }
 
-.admin_panel .main_section .news_main .news_content .news_box .news_text .article_title {
-  margin-top: 15px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th {
+  font-size: 15px;
+  padding: 10px;
 }
 
-.admin_panel .main_section .news_main .news_content .news_box .news_text .article_info {
-  color: #a7a7a7;
-  font-size: 14px;
-  margin-top: 10px;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .first_btn, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .first_btn {
+  margin-right: 15px;
 }
 
-.admin_panel .main_section .news_main .news_content .news_box .news_text .article_info .article_author, .admin_panel .main_section .news_main .news_content .news_box .news_text .article_info .article_date {
-  margin-left: 5px;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td i, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th i {
+  cursor: pointer;
 }
 
-.admin_panel .main_section .news_main .news_content .news_box .news_text .article_info .calendar_icon {
-  margin-left: 10px;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .new_password, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .new_password {
+  color: #1c84fa;
 }
 
-.admin_panel .main_section .news_main .news_content::-webkit-scrollbar {
-  width: 10px;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .dlt_user_btn, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .dlt_user_btn {
+  color: red;
 }
 
-.admin_panel .main_section .news_main .news_content::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-.admin_panel .main_section .news_main .news_content::-webkit-scrollbar-thumb {
-  background: #555;
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr:nth-child(even) {
+  background-color: #dddddd;
 }
 
 @media (min-width: 1280px) and (max-width: 1500px) {
@@ -1078,4 +768,4 @@
   top: 0;
   font-size: 14px;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=admin.css.map */

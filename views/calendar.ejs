@@ -53,7 +53,10 @@
             <!-- ADMIN MAIN -->
             <div class="admin_panel">
 
-                <button data-modal="modal_2" class="add_new_date modal_btn">Add New Calendar Date</button>
+                <% if (user.admin != "false" && user.admin == "true") { %>
+                    <button data-modal="modal_2" class="add_new_date modal_btn">Add New Calendar Date</button>
+                <% } %>
+                
 
                 <!-- LEFT NAVBAR -->
                 <%- include('./templates/left_nav', locals) %>

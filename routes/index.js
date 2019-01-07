@@ -21,7 +21,7 @@ var Calendar = require('../models/calendar');
 
 // Express session Middleware
 router.use(session({
-  secret: 'mysecret',
+  secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true,
 }));
@@ -75,9 +75,9 @@ router.get('*', function(req, res, next){
 // ************** GET home page **************
 router.get('/', ensureAuthenticated, function(req, res, next) {
 
-  var newToken = res.locals.user.token;
-  var theToken = newToken.split("=");
-  var userToken = theToken[0];
+  var newToken = res.locals.user.token,
+  theToken = newToken.split("="),
+  userToken = theToken[0];
 
   res.cookie(userToken, ";expires=Tue, 18 Feb 2025 00:00:00 UTC");
 
@@ -277,7 +277,53 @@ router.get('/feedback', ensureAuthenticated, function(req,res,rext){
   });
   
 })
- 
+
+router.get("/admin", ensureAuthenticated, function(req, res, next){
+
+  if (res.locals.user.admin == "false"){
+    res.redirect("/")
+  }
+  else{
+    User.find({}, function(err, users){
+      if (err){
+        return err;
+      }
+      else{
+        res.render("admin", {
+          header: "Admin",
+          allUsers: users
+        })
+      }
+    }).sort(
+      { "_id":-1 }
+    )
+  }
+})
+
+// ************** DELETE USER **************
+router.delete("/delete-user/:id", function(req, res, next){
+  let query = {_id:req.params.id};
+
+  User.findById(req.params.id, function(err, note){
+    if (err) {
+      console.log(err);
+      return;
+    }
+    else{
+      User.remove(query, function(err){
+        if (err){
+          console.log(err);
+          return;
+        }
+        else{
+          return;
+        }
+      })
+    }
+  });
+})
+
+
 // ************** Access control **************
 function ensureAuthenticated(req, res, next){
 
@@ -310,7 +356,7 @@ function ensureAuthenticated(req, res, next){
       else{
         if (users === null || users === ""){
           console.log(users);
-          res.redirect('/users/register');
+          res.redirect('/users/login');
         }
         else{
           if (users.token == userToken){

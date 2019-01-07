@@ -46,7 +46,7 @@
         grid-template-columns: 1fr 60%;
         padding: 20px;
         grid-gap: 10px;
-        background: #F9FAFB;
+        // background: #F9FAFB;
         overflow-y: scroll;
         overflow-x: hidden;
         @include scrollbar();
@@ -294,4 +294,5 @@
     }
 }
 
-@import '../responsive'
+@import '../responsive';
+@import '../label';

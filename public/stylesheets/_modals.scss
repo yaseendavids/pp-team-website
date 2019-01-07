@@ -221,7 +221,7 @@ and (max-width:1500px){
     }
 }
 
-.modal_3{
+.modal_3, .modal_6, .modal_7{
     .modal_main{
         height: 180px;
         .modal_options{
@@ -243,4 +243,20 @@ and (max-width:1500px){
             }
         }
     }
+}
+.not_authorised{
+    color: rgb(221, 0, 0);
+    margin-top: 35px;
+}
+
+.cancel_btn, .confirm_btn{
+    @include button();
+    @include greenBtn();
+    padding: 0.55rem 1.2rem;
+}
+
+.cancel_btn{
+    background: red;
+    color: white;
+    margin-left: 10px;
 }

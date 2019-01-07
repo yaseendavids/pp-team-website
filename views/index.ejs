@@ -29,8 +29,12 @@
                 <div class="loading_main"></div>
             </div>
 
+            <!-- MODALS -->
             <%- include('./modals/task_modal', locals) %>
             <%- include('./modals/task_edit', locals) %>
+
+            <!-- LABELS -->
+            <%- include('./labels/delete', locals) %>
 
             <!-- This is the Message -->
             <%- messages('message', locals) %>
@@ -150,6 +154,7 @@
     <script src="/javascripts/script.js"></script>
     <script src="/javascripts/home.js"></script>
     <script src="/javascripts/modals.js"></script>
+    <script src="/javascripts/label.js"></script>
     <script>
 
         $(".home_link").css('background','#d15107');

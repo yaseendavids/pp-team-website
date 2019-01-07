@@ -256,19 +256,19 @@
   }
 }
 
-.modal_3 .modal_main {
+.modal_3 .modal_main, .modal_6 .modal_main, .modal_7 .modal_main {
   height: 180px;
 }
 
-.modal_3 .modal_main .modal_options {
+.modal_3 .modal_main .modal_options, .modal_6 .modal_main .modal_options, .modal_7 .modal_main .modal_options {
   text-align: center;
 }
 
-.modal_3 .modal_main .modal_options button {
+.modal_3 .modal_main .modal_options button, .modal_6 .modal_main .modal_options button, .modal_7 .modal_main .modal_options button {
   margin-top: 30px;
 }
 
-.modal_3 .modal_main .modal_options .modal_edit_btn {
+.modal_3 .modal_main .modal_options .modal_edit_btn, .modal_6 .modal_main .modal_options .modal_edit_btn, .modal_7 .modal_main .modal_options .modal_edit_btn {
   margin-right: 20px;
   border: none;
   outline: none;
@@ -284,12 +284,12 @@
   background: #2469ff;
 }
 
-.modal_3 .modal_main .modal_options .modal_edit_btn:hover {
+.modal_3 .modal_main .modal_options .modal_edit_btn:hover, .modal_6 .modal_main .modal_options .modal_edit_btn:hover, .modal_7 .modal_main .modal_options .modal_edit_btn:hover {
   -webkit-box-shadow: 0 0 10px #555;
           box-shadow: 0 0 10px #555;
 }
 
-.modal_3 .modal_main .modal_options .modal_delete_btn {
+.modal_3 .modal_main .modal_options .modal_delete_btn, .modal_6 .modal_main .modal_options .modal_delete_btn, .modal_7 .modal_main .modal_options .modal_delete_btn {
   border: none;
   outline: none;
   background: transparent;
@@ -304,13 +304,48 @@
   background: #b40000;
 }
 
-.modal_3 .modal_main .modal_options .modal_delete_btn:hover {
+.modal_3 .modal_main .modal_options .modal_delete_btn:hover, .modal_6 .modal_main .modal_options .modal_delete_btn:hover, .modal_7 .modal_main .modal_options .modal_delete_btn:hover {
   -webkit-box-shadow: 0 0 10px #555;
           box-shadow: 0 0 10px #555;
 }
 
-.modal_3 .modal_main .modal_options .fas {
+.modal_3 .modal_main .modal_options .fas, .modal_6 .modal_main .modal_options .fas, .modal_7 .modal_main .modal_options .fas {
   margin-left: 5px;
+}
+
+.not_authorised {
+  color: #dd0000;
+  margin-top: 35px;
+}
+
+.cancel_btn, .confirm_btn {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.75rem 2rem;
+  background: #3c9600;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding: 0.55rem 1.2rem;
+}
+
+.cancel_btn:hover, .confirm_btn:hover {
+  -webkit-box-shadow: 0 0 10px #555;
+          box-shadow: 0 0 10px #555;
+}
+
+.cancel_btn {
+  background: red;
+  color: white;
+  margin-left: 10px;
 }
 
 .admin_panel .add_new_date {

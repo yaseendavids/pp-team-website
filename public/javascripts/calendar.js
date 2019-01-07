@@ -132,9 +132,6 @@ $(document).ready(function(){
       method: "GET",
       // dataType: 'json',
       success: function(result){
-        console.log("Calendar event editing");
-
-        console.log(result)
 
         var title = result.title;
         var fullname = title.split(" - ")[0];
