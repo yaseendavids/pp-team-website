@@ -8,11 +8,9 @@
     // ************** MAIN SECTION **************
     .main_section{
         grid-area: main_section;
-        display: grid;
         grid-template-areas: 'admin_users_main .'
         ;
         grid-template-columns: 1fr 40%;
-        padding: 20px;
         grid-gap: 10px;
         // overflow-y: scroll;
         // overflow-x: hidden;
@@ -78,5 +76,4 @@
     }
 }
 
-@import '../responsive';
 @import '../label';

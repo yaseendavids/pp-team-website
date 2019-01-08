@@ -22,8 +22,8 @@ var Calendar = require('../models/calendar');
 // Express session Middleware
 router.use(session({
   secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
+  resave: false,
+  saveUninitialized: false,
 }));
 
 
@@ -218,12 +218,49 @@ router.get('/calendar', ensureAuthenticated, function(req, res, next){
   })
 });
 
+// ************** GET CALENDAR DATA **************
+router.get("/calendar-data", ensureAuthenticated, function(req, res, next){
+
+  Calendar.find({}, function(err, dates){
+    if (err){
+      return err;
+    }
+    else{
+      res.send(dates);
+    }
+  })
+
+});
+
+router.post("/calendar-date-update/:id", ensureAuthenticated, function(req, res, next){
+
+  var date = {};
+
+  date.title = req.body.title ;
+  date.start = req.body.start;
+  date.end = req.body.end;
+  date.color = req.body.color;
+
+  var dateID = req.params.id;
+  let query = {_id: dateID};
+
+  Calendar.update(query, date , function(err){
+    if (err) {
+      console.log(err)
+    }
+    else{
+      res.send("Success")
+    }
+  })
+
+})
+
 // ************** POST CALENDAR DATE **************
 router.post('/calendar-form', ensureAuthenticated, function(req, res, next){
 
   var date = new Calendar();
 
-  date.title = req.body.title + " - " + req.body.username;
+  date.title = req.body.username + " - " + req.body.title;
   date.start = req.body.startDate;
   date.end = req.body.endDate;
   date.color = req.body.color;
@@ -262,6 +299,44 @@ router.post('/calendar-edit', ensureAuthenticated, function(req, res, next){
   })
 });
 
+// ************** REMOVE CALENDAR DATE **************
+router.delete("/delete-calendar-date/:id", ensureAuthenticated, function(req, res, next){
+
+  let query = {id: req.params.id}
+
+  Calendar.findById(req.params.id, function(err, date){
+    if (err){
+      console.log(err)
+    }
+    else{
+      date.remove(query, function(err){
+        if (err){
+          console.log(err)
+        }
+        else{
+          req.flash("success", "Calendar date removed");
+          res.redirect("/calendar");
+        }
+      })
+    }
+  })
+
+})
+
+// ************** GET CALENDAR DATE **************
+router.get('/get-calendar-date/:id', ensureAuthenticated, function(req, res, next){
+
+  Calendar.findById(req.params.id, function(err, date){
+    if (err){
+      return err;
+    }
+    else{
+      res.send(date);
+    }
+  })
+
+})
+
 // ************** GET Hr Policy PAGE **************
 router.get('/hr-policy', ensureAuthenticated, function(req, res, next){
 
@@ -281,7 +356,8 @@ router.get('/feedback', ensureAuthenticated, function(req,res,rext){
 router.get("/admin", ensureAuthenticated, function(req, res, next){
 
   if (res.locals.user.admin == "false"){
-    res.redirect("/")
+    req.flash("danger", "You do not have access to this.");
+    res.redirect("/");
   }
   else{
     User.find({}, function(err, users){
@@ -301,10 +377,11 @@ router.get("/admin", ensureAuthenticated, function(req, res, next){
 })
 
 // ************** DELETE USER **************
-router.delete("/delete-user/:id", function(req, res, next){
-  let query = {_id:req.params.id};
+router.delete("/delete-user/:id",ensureAuthenticated, function(req, res, next){
 
-  User.findById(req.params.id, function(err, note){
+  let query = {id: req.params.id}
+
+  User.findById(req.params.id, function(err, user){
     if (err) {
       console.log(err);
       return;

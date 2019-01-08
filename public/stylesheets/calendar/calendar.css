@@ -410,7 +410,7 @@
   padding: 10px;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: '. calendar . ';
+      grid-template-areas: '. calendar .';
   -ms-grid-columns: 1fr 2fr 1fr;
       grid-template-columns: 1fr 2fr 1fr;
 }

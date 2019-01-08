@@ -6,7 +6,7 @@
         "../_mixins.scss",
         "../_variables.scss",
         "../_modals.scss",
-        "../_responsive.scss",
+        "../_home_responsive.scss",
         "../_label.scss"
     ],
     "names": [],

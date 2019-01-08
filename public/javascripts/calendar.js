@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-  var dataURL = 'https://api.mlab.com/api/1/databases/peach-users/collections/calendars?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1';
-
   var theDate = new Date();
   var theDay = theDate.getDate();
   var theMonth = theDate.getMonth() + 1;
@@ -12,7 +10,7 @@ $(document).ready(function(){
 
   // ***************** START MAIN CALENDER WITH DATA FROM DB *****************
   $.ajax({
-    url: dataURL,
+    url: '/calendar-data',
     method: "GET",
     dataType: 'json',
     success: function(result){
@@ -41,7 +39,7 @@ $(document).ready(function(){
           for (let i = 0; i < sources.length; i++){
             if (sources[i].title == calEvent.title){
 
-              var dateID  = sources[i]._id.$oid;
+              var dateID  = sources[i]._id;
               $(".modal_3_btn").click();
 
               $(".modal_delete_btn").attr("data-id", dateID);
@@ -59,7 +57,6 @@ $(document).ready(function(){
           var confirmMove = confirm("Are you sure you want to move " + event.title + " to "+ event.start.format() + " - " + event.end.format());
 
           if (confirmMove == true){
-            console.log("CLICKED")
             var newDate = {
               "title": event.title,
               "start": event.start.format(),
@@ -67,7 +64,7 @@ $(document).ready(function(){
               "color": event.color
             };
 
-            var id = event.title;
+            var id = event._id;
             var jsonDate = JSON.stringify(newDate, id);
             updateDate(jsonDate, id);
           }
@@ -83,16 +80,13 @@ $(document).ready(function(){
   // ***************** UPDATE CALENDER DATE FOR SPECIFIC USER *****************
   function updateDate(jsonDate, id){
 
-    var dateURL = 'https://api.mlab.com/api/1/databases/peach-users/collections/calendars?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1&q={"title":"' + id + '"}';
-
-    console.log(jsonDate);
     $.ajax({
-      url: dateURL,
-      method: "PUT",
+      url: '/calendar-date-update/' + id,
+      method: "POST",
       contentType: "application/json",
       data: jsonDate,
       success: function(data){
-        alert("Success");
+        alert(data);
       }
     })
 
@@ -100,19 +94,13 @@ $(document).ready(function(){
 
   $(".modal_delete_btn").on('click', () =>{
 
-    var eventID = $(".modal_delete_btn").attr("data-id");
-
-    var eventURL = 'https://api.mlab.com/api/1/databases/peach-users/collections/calendars/'+ eventID +'/?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1';
+    var id = $(".modal_delete_btn").attr("data-id");
     
     $.ajax({
-      url: eventURL,
+      url: '/delete-calendar-date/' + id,
       method: "DELETE",
-      async: true,
-		  timeout: 300000,
-      // dataType: 'json',
       success: function(result){
-        console.log("Calendar event deleted");
-        window.location.href = "/calendar"
+        console.log("Success");
       }
     })
   });
@@ -122,27 +110,27 @@ $(document).ready(function(){
     $(".close_modal").click();
     $(".modal_4_btn").click();
 
-    var eventID = $('.modal_edit_btn').attr("data-id");
-    console.log(eventID)
-
-    var eventURL = 'https://api.mlab.com/api/1/databases/peach-users/collections/calendars/'+ eventID +'/?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1';
+    var id = $('.modal_edit_btn').attr("data-id");
     
     $.ajax({
-      url: eventURL,
+      url: '/get-calendar-date/' + id,
       method: "GET",
-      // dataType: 'json',
       success: function(result){
+
+        console.log(result)
 
         var title = result.title;
         var fullname = title.split(" - ")[0];
         var reason = title.split(" - ")[1];
         var id = result._id.$oid;
+        var startDate = result.start;
+        var endDate = result.end;
 
         $("#edit_id").val(id);
         $("#edit_fullname").val(fullname);
         $("#edit_leave").val(reason);
-        $("#edit_startdate").val(result.start);
-        $("#edit_enddate").val(result.end);
+        $("#edit_startdate").val(startDate);
+        $("#edit_enddate").val(endDate);
         $("#edit_color").val(result.color);
         
       }
