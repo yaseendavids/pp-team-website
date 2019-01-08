@@ -13,7 +13,7 @@ $(document).ready(function(){
         var monthsOfYear = ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Nov', 'Dec'];
 
         dayText = daysOfWeek[day - 1];
-        dateText = monthsOfYear[month -1] + ", " + theDate + " " +  year;
+        dateText = monthsOfYear[month] + ", " + theDate + " " +  year;
 
         $(".today_day").text(dayText);
         $(".today_date").text(dateText);
@@ -39,33 +39,80 @@ $(document).ready(function(){
     })
 
     // ******************** DELETE NOTE ********************
+
     $('.delete_note').on('click', function(e){
 
         // Confirmation message
         let confirmDelete = confirm("Are you sure you want to delete the note ?");
         if (confirmDelete == true){
+            
+            $(this).closest("p").remove();
             // target event
             let target = $(this);
             // Data attrib of button
             const id = target.attr('data-id');
-            console.log(id);
 
             // Ajax function
             $.ajax({
                 method: 'DELETE',
                 url: '/delete-note/'+id,
                 success: function(response){
-                    window.location.href="/";
+                    console.log("Task deleted")
                 },
                 error: function(err){
                     console.log(err);
                 }
             });
         }
-        else {
-            $(".loading_wrapper").fadeOut("fast");
-        }
 
+    });
+
+    // **************** MARK TASK AS COMPLETE OR NOT COMPLETE ****************
+
+    $('.note_icon').on('click', function(e){
+
+        // IF TASK IS NOT COMPLETE, MARK AS COMPLETE
+        if ($(this).hasClass("note_check")){
+
+            $(this).addClass("note_complete");
+            $(this).closest(".notes_left").find(".delete_note").addClass("completed_task");
+            $(this).removeClass("note_check");
+
+            let target = $(this);
+            const id = target.attr('data-id');
+            
+            $.ajax({
+                method: 'GET',
+                url: '/completed/'+id,
+                done: function(response){
+                    console.log("Task updated")
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        // IF TASK IS COMPLETE, MARK AS NOT COMPLETE
+        else if ($(this).hasClass("note_complete")){
+
+            $(this).addClass("note_check");
+            $(this).closest(".notes_left").find(".delete_note").removeClass("completed_task");
+            $(this).removeClass("note_complete");
+    
+            let target = $(this);
+            const id = target.attr('data-id');
+
+            $.ajax({
+                method: 'GET',
+                url: '/redo-note/'+id,
+                done: function(response){
+                    console.log("Task updated")
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
     });
 
     // ******************** CHECK IF USER HAS NOTES ********************
@@ -101,6 +148,30 @@ $(document).ready(function(){
                 );
             }
         }
+    })
+
+    // ******************** EDIT TASK********************
+    $(".notes_notes").on('click', function(){
+
+        let targetID = $(this).attr('data-id');
+        console.log(targetID)
+
+        let noteURL = "https://api.mlab.com/api/1/databases/peach-users/collections/notes/" + targetID +"/?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1"
+
+        // MAKE API CALL TO POST THE DATA TO THE EDIT TASK MODAL
+        $.ajax({
+            url: noteURL,
+            method: "GET",
+            success: (noteData) =>{
+
+                $("#note_id").val(noteData._id.$oid);
+                $("#note_username").val(noteData.username);
+                $("#note_edit").val(noteData.note);
+                $("#note_importance").val(noteData.importance);
+
+            }
+        })
+
     })
 
 })

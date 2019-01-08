@@ -19,6 +19,10 @@ const UserSchema = mongoose.Schema({
     token:{
         type: String,
         required: true
+    },
+    admin:{
+        type: String,
+        required: true
     }
 });
 

@@ -104,6 +104,6 @@ a {
     }
 }
 
-.user_error, .email_error, .pass_error{
+.user_error, .email_error, .pass_error, .pass_valid{
     color: red;
 }

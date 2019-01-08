@@ -8,6 +8,17 @@ $(document).ready(function(){
     var confirmInput = $("input[name=password2]");
     var errorText = $(".user_error");
     var submitBtn = $("button[type=submit]");
+    var registerErrMsg = $("span").text();
+    var numbers = ["1","2","3","4","5","6","7","8","9","0"];
+
+    function lockButton(){
+        $(submitBtn).prop('disabled', true);
+        $(submitBtn).css('background', '#cecece');
+    }
+    function unlockButton(){
+        $(submitBtn).prop('disabled', false);
+        $(submitBtn).css('background', '#57b846');
+    }
 
     $.ajax({
         url: userUrl,
@@ -32,8 +43,7 @@ $(document).ready(function(){
                 if ($(usernameInput).val() == usernames[i2]){
                     $(".user_error").text("Username already in use");
                     $(".fa-user").css("color", "red");
-                    $(submitBtn).prop('disabled', true);
-                    $(submitBtn).css('background', '#cecece');
+                    lockButton();
                     return;
                 }
                 else if ($(usernameInput).val() == null || $(usernameInput).val() == ""){
@@ -42,8 +52,9 @@ $(document).ready(function(){
                 else{
                     $(".user_error").text("");
                     $(".fa-user").css("color", "green");
-                    $(submitBtn).prop('disabled', false);
-                    $(submitBtn).css('background', '#57b846');
+                    if ($(".user_error").text() == "" && $(".pass_error").text() == "" && $(".email_error").text() == ""){
+                        unlockButton();
+                    }
                 }
             }
         })
@@ -55,8 +66,7 @@ $(document).ready(function(){
                 if ($(emailInput).val() == emails[i3]){
                     $(".email_error").text("Email already in use");
                     $(".fa-envelope").css("color", "red");
-                    $(submitBtn).prop('disabled', true);
-                    $(submitBtn).css('background', '#cecece');
+                    lockButton();
                     return;
                 }
                 else if ($(emailInput).val() == null || $(emailInput).val() == ""){
@@ -65,19 +75,43 @@ $(document).ready(function(){
                 else{
                     $(".email_error").text("");
                     $(".fa-envelope").css("color", "green");
-                    $(submitBtn).prop('disabled', false);
-                    $(submitBtn).css('background', '#57b846');
+                    if ($(".user_error").text() == "" && $(".pass_error").text() == "" && $(".email_error").text() == ""){
+                        unlockButton();
+                    }
                 }
             }
         })
     }
 
+    $(passInput).on('keyup', () => {
+        var password = $(passInput).val();
+
+        // for (let i = 0; i < numbers.length; i ++){
+            
+        // }
+        if (numbers.some(substring=>password.includes(substring))){
+            $(".pass_valid").text("");
+            $(".fa-lock").css("color", "green");
+            if ($(".user_error").text() == "" && $(".pass_error").text() == "" && $(".email_error").text() == "" && $(".pass_valid").text() == ""){
+                unlockButton();
+            }
+        }
+        else if ($(passInput).val() == null || $(passInput).val() == ""){
+            $(".fa-lock").css("color", "black");
+        }
+        else {
+            $(".pass_valid").text("Passwords must contain a number");
+            $(".fa-lock").css("color", "red");
+            lockButton();
+            return;
+        }
+    })
+
     $(confirmInput).on('keyup', () => {
         if ($(passInput).val() != $(confirmInput).val()){
             $(".pass_error").text("Passwords do not match");
             $(".fa-lock").css("color", "red");
-            $(submitBtn).prop('disabled', true);
-            $(submitBtn).css('background', '#cecece');
+            lockButton();
             return;
         }
         else if ($(passInput).val() == null || $(passInput).val() == ""){
@@ -86,8 +120,9 @@ $(document).ready(function(){
         else{
             $(".pass_error").text("");
             $(".fa-lock").css("color", "green");
-            $(submitBtn).prop('disabled', false);
-            $(submitBtn).css('background', '#57b846');
+            if ($(".user_error").text() == "" && $(".pass_error").text() == "" && $(".email_error").text() == ""){
+                unlockButton();
+            }
         }
     })
     

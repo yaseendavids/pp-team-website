@@ -21,9 +21,9 @@ var Calendar = require('../models/calendar');
 
 // Express session Middleware
 router.use(session({
-  secret: 'mysecret',
-  resave: true,
-  saveUninitialized: true,
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
 }));
 
 
@@ -75,9 +75,9 @@ router.get('*', function(req, res, next){
 // ************** GET home page **************
 router.get('/', ensureAuthenticated, function(req, res, next) {
 
-  var newToken = res.locals.user.token;
-  var theToken = newToken.split("=");
-  var userToken = theToken[0];
+  var newToken = res.locals.user.token,
+  theToken = newToken.split("="),
+  userToken = theToken[0];
 
   res.cookie(userToken, ";expires=Tue, 18 Feb 2025 00:00:00 UTC");
 
@@ -112,8 +112,7 @@ router.get('/completed/:id', ensureAuthenticated, function(req, res, next){
       console.log(err)
     }
     else{
-      req.flash("success",  "Task completed");
-      res.redirect('/');
+      return;
     }
   })
 });
@@ -130,7 +129,7 @@ router.get('/redo-note/:id', ensureAuthenticated, function(req, res, next){
       console.log(err)
     }
     else{
-      res.redirect('/');
+      return;
     }
   })
 });
@@ -151,8 +150,6 @@ router.delete('/delete-note/:id', ensureAuthenticated, function(req, res, next){
           console.log(err);
           return;
         }
-        req.flash('success', "Task Deleted");
-        res.send("Successfully deleted Note");
       })
     }
   });
@@ -179,6 +176,29 @@ router.post('/add_new_note', ensureAuthenticated, function(req, res, next){
   })
 });
 
+// EDIT NOTE
+router.post('/edit_note', ensureAuthenticated, function(req, res, next){
+
+  var note = {};
+
+  note.username = req.body.username;
+  note.note = req.body.note;
+  note.importance = req.body.importance;
+  note.completed = req.body.completed;
+  var theID = req.body.id;
+
+  let query = {_id:theID};
+
+  Notes.update(query, note , function(err){
+    if (err) {
+      console.log(err)
+    }
+    else{
+      res.redirect("/");
+    }
+  })
+});
+
 // ************** GET Calender PAGE **************
 router.get('/calendar', ensureAuthenticated, function(req, res, next){
 
@@ -198,12 +218,49 @@ router.get('/calendar', ensureAuthenticated, function(req, res, next){
   })
 });
 
+// ************** GET CALENDAR DATA **************
+router.get("/calendar-data", ensureAuthenticated, function(req, res, next){
+
+  Calendar.find({}, function(err, dates){
+    if (err){
+      return err;
+    }
+    else{
+      res.send(dates);
+    }
+  })
+
+});
+
+router.post("/calendar-date-update/:id", ensureAuthenticated, function(req, res, next){
+
+  var date = {};
+
+  date.title = req.body.title;
+  date.start = req.body.start;
+  date.end = req.body.end;
+  date.color = req.body.color;
+
+  var dateID = req.params.id;
+  let query = {_id: dateID};
+
+  Calendar.update(query, date , function(err){
+    if (err) {
+      console.log(err)
+    }
+    else{
+      res.send("Success");
+    }
+  })
+
+})
+
 // ************** POST CALENDAR DATE **************
 router.post('/calendar-form', ensureAuthenticated, function(req, res, next){
 
   var date = new Calendar();
 
-  date.title = req.body.title + " - " + req.body.username;
+  date.title = req.body.username + " - " + req.body.title;
   date.start = req.body.startDate;
   date.end = req.body.endDate;
   date.color = req.body.color;
@@ -217,6 +274,69 @@ router.post('/calendar-form', ensureAuthenticated, function(req, res, next){
       res.redirect('/calendar');
     }
   })
+})
+
+// ************** REMOVE  NOTE CHECK **************
+router.post('/calendar-edit', ensureAuthenticated, function(req, res, next){
+
+  var date = {};
+
+  date.title = req.body.edit_fullname + " - " + req.body.edit_leave;
+  date.start = req.body.edit_startdate;
+  date.end = req.body.edit_enddate;
+  date.color = req.body.edit_color;
+
+  var dateID = req.body.edit_id;
+  let query = {_id: dateID};
+
+  Calendar.update(query, date , function(err){
+    if (err) {
+      console.log(err)
+    }
+    else{
+      req.flash("success", "Calendar date updated");
+      res.redirect("/calendar");
+    }
+  })
+
+});
+
+// ************** REMOVE CALENDAR DATE **************
+router.post("/delete-calendar-date/:id", ensureAuthenticated, function(req, res, next){
+
+  let query = {id: req.params.id}
+
+  Calendar.findById(req.params.id, function(err, date){
+    if (err){
+      console.log(err)
+    }
+    else{
+      date.remove(query, function(err){
+        if (err){
+          console.log(err)
+        }
+        else{
+          req.flash("success", "Calendar date removed");
+          res.redirect("/calendar");
+        }
+      })
+    }
+  })
+
+})
+
+// ************** GET CALENDAR DATE **************
+router.get('/get-calendar-date/:id', ensureAuthenticated, function(req, res, next){
+
+  Calendar.findById(req.params.id, function(err, date){
+    if (err){
+      return err;
+    }
+    else{
+      res.send(date);
+    }
+  })
+
 })
 
 // ************** GET Hr Policy PAGE **************
@@ -234,7 +354,58 @@ router.get('/feedback', ensureAuthenticated, function(req,res,rext){
   });
   
 })
- 
+
+router.get("/admin", ensureAuthenticated, function(req, res, next){
+
+  if (res.locals.user.admin == "false"){
+    req.flash("danger", "You do not have access to this.");
+    res.redirect("/");
+  }
+  else{
+    User.find({}, function(user_err, users){
+      Notes.find({}, function(notes_err, notes){
+        if (user_err || notes_err){
+          return;
+        }
+        else{
+          res.render("admin", {
+            header: "Admin",
+            allUsers: users,
+            notes: notes
+          })
+        }
+      })
+    }).sort(
+      { "_id":-1 }
+    )
+  }
+})
+
+// ************** DELETE USER **************
+router.delete("/delete-user/:id",ensureAuthenticated, function(req, res, next){
+
+  let query = {id: req.params.id}
+
+  User.findById(req.params.id, function(err, user){
+    if (err) {
+      console.log(err);
+      return;
+    }
+    else{
+      user.remove(query, function(err){
+        if (err){
+          console.log(err);
+          return;
+        }
+        else{
+          return;
+        }
+      })
+    }
+  });
+})
+
+
 // ************** Access control **************
 function ensureAuthenticated(req, res, next){
 
@@ -267,7 +438,7 @@ function ensureAuthenticated(req, res, next){
       else{
         if (users === null || users === ""){
           console.log(users);
-          res.redirect('/users/register');
+          res.redirect('/users/login');
         }
         else{
           if (users.token == userToken){

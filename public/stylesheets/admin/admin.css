@@ -348,84 +348,116 @@
   margin-left: 10px;
 }
 
-.admin_panel .add_new_date {
-  border: none;
-  outline: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0.75rem 2rem;
-  background: #3c9600;
-  color: white;
-  border-radius: 4px;
-  font-size: 16px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  -webkit-animation: fadeBox;
-          animation: fadeBox;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-animation-delay: 1.5s;
-          animation-delay: 1.5s;
-  position: absolute;
-  left: 800px;
-  top: 97px;
-  z-index: 100;
-}
-
-.admin_panel .add_new_date:hover {
-  -webkit-box-shadow: 0 0 10px #555;
-          box-shadow: 0 0 10px #555;
-}
-
-@-webkit-keyframes fadeBox {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-
-@keyframes fadeBox {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-
 .admin_panel .main_section {
   grid-area: main_section;
-  padding: 10px;
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: '. calendar .';
-  -ms-grid-columns: 1fr 2fr 1fr;
-      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-areas: 'admin_users_main .';
+  -ms-grid-columns: 1fr 40%;
+      grid-template-columns: 1fr 40%;
+  grid-gap: 10px;
 }
 
-.admin_panel .main_section #calendar {
+.admin_panel .main_section .admin_users_main {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: calendar;
+  -ms-grid-column: 1;
+  grid-area: admin_users_main;
   background: #fff;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 10px #d8d8d8;
           box-shadow: 0px 0px 10px #d8d8d8;
   border: 1px solid rgba(212, 212, 212, 0.514);
-  padding: 10px;
-  width: 1022px;
-  text-align: center;
+  height: 400px;
+  color: #555;
 }
-/*# sourceMappingURL=calendar.css.map */
+
+.admin_panel .main_section .admin_users_main .admin_users_header {
+  padding: 10px;
+  background: #f0f0f0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_header p {
+  font-weight: 600;
+  font-size: 20px;
+  color: #555;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content {
+  padding: 10px;
+  margin-top: 5px;
+  overflow: scroll;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr .fa-times {
+  color: red;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr .fa-check {
+  color: green;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr .isAdmin i {
+  margin-left: 15px;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th {
+  font-size: 15px;
+  padding: 10px;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .first_btn, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .first_btn {
+  margin-right: 15px;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td i, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th i {
+  cursor: pointer;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .new_password, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .new_password {
+  color: #1c84fa;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .dlt_user_btn, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .dlt_user_btn {
+  color: red;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.the_label {
+  display: none;
+  z-index: 1000000;
+  position: absolute;
+  padding: 2px 2px;
+  border-radius: 5px;
+  color: white;
+  background: #555;
+  border: 1px solid #555;
+  top: 0;
+  font-size: 14px;
+}
+/*# sourceMappingURL=admin.css.map */
