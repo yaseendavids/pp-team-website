@@ -5,10 +5,10 @@ var passport = require('passport');
 const TokenGenerator = require('uuid-token-generator');
 var cookieParser = require('cookie-parser');
 const logout = require('express-passport-logout');
+var session = require('express-session');
 
 // Bring in User Model
 let User = require('../models/user');
-
 
 /* GET register page */
 router.get('/register', function(req, res, next){
@@ -32,6 +32,7 @@ router.post('/register', function(req, res, next){
   const password = req.body.password;
   const password2 = req.body.password2;
   const token = tokgen.generate();
+  const admin = "false";
 
   res.cookie(token, "expires=Tue, 18 Feb 2025 12:00:00 UTC");
 
@@ -56,7 +57,8 @@ router.post('/register', function(req, res, next){
       username: username,
       email: email,
       password: password,
-      token: token
+      token: token,
+      admin: admin
     });
 
     bcrypt.genSalt(10, function(err, salt){
@@ -124,16 +126,16 @@ router.post('/token/login', (req, res, next) => {
 
 // Logout Proccess
 router.get('/logout', (req, res) => {
-  req.session.destroy( (err) => {
-    if (err){
-      console.log(err)
-    }
-    else{
-      req.logout();
-      req.flash('success', 'You are logged out');
-      res.redirect('/users/login');
-    }
-  })
+
+  var token = req.headers.cookie;
+
+  console.log("Logging you out");
+
+  req.logout();
+  req.flash('success', 'You are logged out');
+  res.clearCookie(token);
+  res.redirect('/users/login');
+
 })
 
 module.exports = router;

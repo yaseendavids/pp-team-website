@@ -1,0 +1,33 @@
+<!-- ADD A TASK MODAL -->
+
+<div class="modal_wrapper modal_5" data-modal="modal_5">
+    <div class="modal_main">
+        <div class="modal_header">
+            <h3>Edit Task <i class="fas fa-tasks"></i></h3>
+            <i class="far fa-times-circle close_modal"></i>
+        </div>
+        <div class="modal_form">
+                <form method="POST" action="/edit_note">
+                    <input type="hidden" name="username" id="note_username" required>
+                    <input type="hidden" name="completed" value="false" required>
+                    <input type="hidden" name="id" id="note_id" required>
+                    <div class="input_box">
+                        <label for="note">Task</label>
+                        <br>
+                        <input type="text" name="note" id="note_edit" placeholder="Loading..." autofocus autocomplete="off" required>
+                    </div>
+                    <div class="input_box">
+                        <label for="importance">Level of importance</label>
+                        <br>
+                        <select name="importance" id="note_importance" required>
+                            <option selected="selected" disabled="disabled">Please select one</option>
+                            <option value="Urgent">Urgent</option>
+                            <option value="Normal">Normal</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                    <button class="button_calendar disabled" type="submit">Submit <i class="fas fa-arrow-right submit_arrow"></i></button>
+                </form>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<!-- MODAL -->
+
+<div class="modal_wrapper modal_3" data-modal="modal_3">
+    <div class="modal_main">
+        <div class="modal_header">
+            <h3>What would you like to do? <i class="fab fa-pagelines"></i></h3>
+            <i class="far fa-times-circle close_modal"></i>
+        </div>
+        <div class="modal_form modal_options">
+            <% if (user.admin == "true") { %>
+                <button class="modal_edit_btn">Edit <i class="fas fa-edit"></i></button>
+                <button class="modal_delete_btn disabled">Delete <i class="fas fa-times"></i></button>
+            <% } else { %>
+                <p class="not_authorised">You are not authorised to make changes.</p>
+            <% } %>
+        </div>
+    </div>
+</div>

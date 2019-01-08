@@ -45,9 +45,16 @@
         padding: 5px;
         height: 60px;
         margin-top: 5px;
-        width: 50px;
         margin-right: 120px;
-
+        color: $headerColor;
+        .profile_user{
+            float: left;
+            margin-top: 15px;
+            margin-right: 20px;
+            p{
+                text-transform: capitalize;
+            }
+        }
         .profile_btn{
             float: right;
             margin-top: 10px;
@@ -55,55 +62,26 @@
             .profile_dropdown{
                 display: none;
                 z-index: 1000000;
-                width: 230px;
-                height: 140px;
+                width: 180px;
                 background: #fff;
                 position: absolute;
                 border-radius: 5px;
                 top: 70px;
                 padding: 10px;
                 box-shadow: 0px 10px 10px #cecece;
-                margin-left: -200px;
-
-                .profile_view{
-                    height: 60px;
-                    @include profileBtnStyle();
-                    margin-bottom: 10px;
-                    color: #333;
-
-                    &:hover{
-                        background: #cecece;
-                    }
-
-                    .view_text{
-                        float: left;
-                        margin-left: 15px;
-                    }
-                    
-                    .view{
-                        float: left;
-                        font-size: 50px;
-                    }
-                    .profile_username{
-                        text-transform: capitalize;
-                    }
-                    p{
-                        color: blue;
-                        float: left;
-                        margin-left: 15px;
-                    }
-                    a{
-                        float: left;
-                        text-decoration: none;
-                        font-size: 15px;
-                    }
-                }
-                .logout_btn{
+                margin-left: -180px;
+                .links_btn{
                     text-decoration: none;
                     color: #333;
                     transition: all 0.2s;
-                    .logout_box{
+                    .links_box{
                         @include profileBtnStyle();
+                        .fas{
+                            margin-left: 5px;
+                        }
+                        .fa-sign-out-alt{
+                            color: red;
+                        }
                         .sign_out{
                             margin-left: 5px;
                         }
@@ -209,4 +187,8 @@
         right: 0;
         height: 100vh;
     }
+}
+
+.hidden{
+    display: none;
 }

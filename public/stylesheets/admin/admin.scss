@@ -1,0 +1,79 @@
+@import "../mixins";
+@import "../variables";
+@import "../modals";
+
+// ************** ADMIN PANEL **************
+.admin_panel{
+    
+    // ************** MAIN SECTION **************
+    .main_section{
+        grid-area: main_section;
+        grid-template-areas: 'admin_users_main .'
+        ;
+        grid-template-columns: 1fr 40%;
+        grid-gap: 10px;
+        // overflow-y: scroll;
+        // overflow-x: hidden;
+        // @include scrollbar();
+
+        // ************** ADMIN USERS MAIN **************
+        .admin_users_main{
+            grid-area: admin_users_main;
+            @include panelBox();
+            height: 400px;
+            color: $boxHeaderColor;
+
+            // ************** ADMIN USERS HEADER **************
+            .admin_users_header{
+                @include boxHeaderSection();
+            }
+            .admin_users_content{
+                padding: 10px;
+                margin-top: 5px;
+                overflow: scroll;
+                @include scrollbar();
+                .admin_users_table{
+                    border-collapse: collapse;
+                    width: 100%;
+                    tr{
+                        border: 1px solid #dddddd;
+                        text-align: left;
+                        padding: 10px;
+                        .fa-times{
+                            color: red;
+                        }
+                        .fa-check{
+                            color: green;
+                        }
+                        .isAdmin{
+                            i{
+                                margin-left: 15px;
+                            }
+                        }
+                        td, th{
+                            font-size: 15px;
+                            padding: 10px;
+                            .first_btn{
+                                margin-right: 15px;
+                            }
+                            i{
+                                cursor: pointer;
+                            }
+                            .new_password{
+                                color: rgb(28, 132, 250);
+                            }
+                            .dlt_user_btn{
+                                color: red;
+                            }
+                        }
+                    }
+                    tr:nth-child(even) {
+                        background-color: #dddddd;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@import '../label';

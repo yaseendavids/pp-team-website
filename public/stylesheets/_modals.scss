@@ -47,7 +47,7 @@
 }
 
 // CALENDER MODAL
-.modal_2, .modal_1{
+.modal_2, .modal_1, .modal_4, .modal_5{
     .modal_main{
         position: relative;
         .modal_form{
@@ -130,7 +130,7 @@
 .hideme{
     display: none;
 }
-.modal_1{
+.modal_1, .modal_5{
     .modal_main{
         height: 400px;
     }
@@ -140,7 +140,7 @@
 @media (min-width: 1280px)
 and (max-width:1500px){
 
-    .modal_2{
+    .modal_2, .modal_4{
         .modal_main{
             height: 550px;
             .modal_header{
@@ -219,5 +219,44 @@ and (max-width:1500px){
             }
         }
     }
+}
 
+.modal_3, .modal_6, .modal_7{
+    .modal_main{
+        height: 180px;
+        .modal_options{
+            text-align: center;
+            button{
+                margin-top: 30px;
+            }
+            .modal_edit_btn{
+                margin-right: 20px;
+                @include greenBtn();
+                background: rgb(36, 105, 255);
+            }
+            .modal_delete_btn{
+                @include greenBtn();
+                background: rgb(180, 0, 0);
+            }
+            .fas{
+                margin-left: 5px;
+            }
+        }
+    }
+}
+.not_authorised{
+    color: rgb(221, 0, 0);
+    margin-top: 35px;
+}
+
+.cancel_btn, .confirm_btn{
+    @include button();
+    @include greenBtn();
+    padding: 0.55rem 1.2rem;
+}
+
+.cancel_btn{
+    background: red;
+    color: white;
+    margin-left: 10px;
 }
