@@ -176,6 +176,19 @@ router.post('/add_new_note', ensureAuthenticated, function(req, res, next){
   })
 });
 
+router.get("/notes_data/:id", ensureAuthenticated, function(req, res, next){
+
+  Notes.findById(req.params.id, function(err, note){
+    if (err){
+      return err;
+    }
+    else{
+      res.send(note)
+    }
+  })
+
+})
+
 // EDIT NOTE
 router.post('/edit_note', ensureAuthenticated, function(req, res, next){
 
@@ -194,6 +207,7 @@ router.post('/edit_note', ensureAuthenticated, function(req, res, next){
       console.log(err)
     }
     else{
+      req.flash("success", "Task has been updated")
       res.redirect("/");
     }
   })
@@ -404,7 +418,6 @@ router.delete("/delete-user/:id",ensureAuthenticated, function(req, res, next){
     }
   });
 })
-
 
 // ************** Access control **************
 function ensureAuthenticated(req, res, next){

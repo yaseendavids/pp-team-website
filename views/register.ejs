@@ -42,27 +42,26 @@
                 <h3> Employee Login </h3>
 
                 <i class="fas fa-user login_icon"></i>
-                <input type="text" name="username" placeholder="Username" autofocus autocomplete="false">
+                <input type="text" name="username" id="username" placeholder="Username" autofocus autocomplete="false" spellcheck="false">
                 <br>
                 <span class="user_error register_err_msg"></span>
                 <br>
                 <i class="fas fa-envelope login_icon"></i>
-                <input type="email" name="email" placeholder="Email Address">
+                <input type="email" name="email" id="email" placeholder="Email Address" spellcheck="false">
                 <br>
                 <span class="email_error register_err_msg"></span>
                 <br>
-                <i class="fas fa-lock login_icon"></i>
-                <input type="password" name="password" placeholder="Password">
+                <i class="fas fa-lock lock_1 login_icon"></i>
+                <input type="password" name="password" id="password" placeholder="Password">
                 <br>
                 <span class="pass_valid register_err_msg"></span>
                 <br>
-                <i class="fas fa-lock login_icon"></i>
+                <i class="fas fa-lock lock_2 login_icon"></i>
                 <input type="password" name="password2" placeholder="Confirm Password">
                 <br>
                 <span class="pass_error register_err_msg"></span>
                 <br>
-
-                <button type="submit" class="login-btn"><%= header %></button>
+                <button type="submit" class="login-btn" disabled="disabled"><%= header %></button>
                 <p>Already have an account? <a href="/users/login">Login</a></p>
 
             </form>

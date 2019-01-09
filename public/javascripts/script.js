@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
     $(".alert").on('click', function(){
+        $(".alert").animate({marginLeft: "+600px", opacity: "0"})
         $(this).fadeOut();
     });
     
     setTimeout(function(){
+        $(".alert").animate({marginLeft: "+600px", opacity: "0"})
         $(".alert").fadeOut();
     },3000);
 

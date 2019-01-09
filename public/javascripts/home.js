@@ -156,15 +156,15 @@ $(document).ready(function(){
         let targetID = $(this).attr('data-id');
         console.log(targetID)
 
-        let noteURL = "https://api.mlab.com/api/1/databases/peach-users/collections/notes/" + targetID +"/?apiKey=s9Sjlqqdqj-rscZfP8zgevtIyfu3Wfq1"
-
         // MAKE API CALL TO POST THE DATA TO THE EDIT TASK MODAL
         $.ajax({
-            url: noteURL,
+            url: '/notes_data/' + targetID,
             method: "GET",
             success: (noteData) =>{
 
-                $("#note_id").val(noteData._id.$oid);
+                console.log(noteData)
+
+                $("#note_id").val(noteData._id);
                 $("#note_username").val(noteData.username);
                 $("#note_edit").val(noteData.note);
                 $("#note_importance").val(noteData.importance);
