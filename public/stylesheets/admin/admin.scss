@@ -7,10 +7,11 @@
     
     // ************** MAIN SECTION **************
     .main_section{
+        display: grid;
         grid-area: main_section;
         grid-template-areas: 'admin_users_main .'
         ;
-        grid-template-columns: 1fr 40%;
+        grid-template-columns: 60% 1fr;
         grid-gap: 10px;
         // overflow-y: scroll;
         // overflow-x: hidden;
@@ -20,7 +21,7 @@
         .admin_users_main{
             grid-area: admin_users_main;
             @include panelBox();
-            height: 400px;
+            max-height: 400px;
             color: $boxHeaderColor;
 
             // ************** ADMIN USERS HEADER **************
@@ -59,6 +60,9 @@
                             .label_main{
                                 cursor: pointer;
                             }
+                            .r_admin_btn{
+                                color: rgb(42, 180, 42);
+                            }
                             .new_password{
                                 color: rgb(28, 132, 250);
                             }
@@ -73,6 +77,15 @@
                 }
             }
         }
+        // .admin_test_main{
+        //     grid-area: admin_test_main;
+        //     @include panelBox();
+        //     max-height: 400px;
+        //     color: $boxHeaderColor;
+        //     .admin_test_header{
+        //         @include boxHeaderSection();
+        //     }
+        // }
     }
 }
 

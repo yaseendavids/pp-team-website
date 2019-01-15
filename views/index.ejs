@@ -34,7 +34,7 @@
             <%- include('./modals/task_edit', locals) %>
 
             <!-- LABELS -->
-            <%- include('./labels/delete', locals) %>
+            <%- include('./labels/label', locals) %>
 
             <!-- This is the Message -->
             <%- messages('message', locals) %>
@@ -102,8 +102,8 @@
                                         <% if (notes[i].completed == 'true') { %>
                                             <p class="notes_text visible">
                                                 <span class="notes_left">
-                                                    <span><i data-id="<%= notes[i].id %>" class="fas fa-check note_complete note_icon"></i></span>
-                                                    <span class="delete_note completed_task" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
+                                                    <span><i data-id="<%= notes[i].id %>" class="fas fa-check note_complete note_icon label_main" data-label="label_5"></i></span>
+                                                    <span class="delete_note completed_task label_main" data-id="<%= notes[i].id %>" data-label="label_3"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                                 <span class="notes_center">
                                                         <span data-id="<%= notes[i].id %>" class="notes_notes modal_btn" data-modal="modal_5"><%= notes[i].note %></span>
@@ -115,8 +115,8 @@
                                         <% } else { %>
                                             <p class="notes_text visible">
                                                 <span class="notes_left">
-                                                    <span><i data-id="<%= notes[i].id %>" class="fas fa-check note_check note_icon"></i></span>
-                                                    <span class="delete_note" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
+                                                    <span><i data-id="<%= notes[i].id %>" data-label="label_4" class="fas fa-check note_check note_icon label_main"></i></span>
+                                                    <span class="delete_note label_main" data-label="label_3" data-id="<%= notes[i].id %>"><i class="fas fa-trash-alt"></i></span>
                                                 </span>
                                                 <span class="notes_center">
                                                     <span data-id="<%= notes[i].id %>" class="notes_notes modal_btn" data-modal="modal_5"><%= notes[i].note %></span>

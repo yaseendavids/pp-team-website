@@ -256,19 +256,19 @@
   }
 }
 
-.modal_3 .modal_main, .modal_6 .modal_main, .modal_7 .modal_main {
+.modal_3 .modal_main, .modal_6 .modal_main, .modal_7 .modal_main, .modal_8 .modal_main {
   height: 180px;
 }
 
-.modal_3 .modal_main .modal_options, .modal_6 .modal_main .modal_options, .modal_7 .modal_main .modal_options {
+.modal_3 .modal_main .modal_options, .modal_6 .modal_main .modal_options, .modal_7 .modal_main .modal_options, .modal_8 .modal_main .modal_options {
   text-align: center;
 }
 
-.modal_3 .modal_main .modal_options button, .modal_6 .modal_main .modal_options button, .modal_7 .modal_main .modal_options button {
+.modal_3 .modal_main .modal_options button, .modal_6 .modal_main .modal_options button, .modal_7 .modal_main .modal_options button, .modal_8 .modal_main .modal_options button {
   margin-top: 30px;
 }
 
-.modal_3 .modal_main .modal_options .modal_edit_btn, .modal_6 .modal_main .modal_options .modal_edit_btn, .modal_7 .modal_main .modal_options .modal_edit_btn {
+.modal_3 .modal_main .modal_options .modal_edit_btn, .modal_6 .modal_main .modal_options .modal_edit_btn, .modal_7 .modal_main .modal_options .modal_edit_btn, .modal_8 .modal_main .modal_options .modal_edit_btn {
   margin-right: 20px;
   border: none;
   outline: none;
@@ -284,12 +284,12 @@
   background: #2469ff;
 }
 
-.modal_3 .modal_main .modal_options .modal_edit_btn:hover, .modal_6 .modal_main .modal_options .modal_edit_btn:hover, .modal_7 .modal_main .modal_options .modal_edit_btn:hover {
+.modal_3 .modal_main .modal_options .modal_edit_btn:hover, .modal_6 .modal_main .modal_options .modal_edit_btn:hover, .modal_7 .modal_main .modal_options .modal_edit_btn:hover, .modal_8 .modal_main .modal_options .modal_edit_btn:hover {
   -webkit-box-shadow: 0 0 10px #555;
           box-shadow: 0 0 10px #555;
 }
 
-.modal_3 .modal_main .modal_options .modal_delete_btn, .modal_6 .modal_main .modal_options .modal_delete_btn, .modal_7 .modal_main .modal_options .modal_delete_btn {
+.modal_3 .modal_main .modal_options .modal_delete_btn, .modal_6 .modal_main .modal_options .modal_delete_btn, .modal_7 .modal_main .modal_options .modal_delete_btn, .modal_8 .modal_main .modal_options .modal_delete_btn {
   border: none;
   outline: none;
   background: transparent;
@@ -304,12 +304,12 @@
   background: #b40000;
 }
 
-.modal_3 .modal_main .modal_options .modal_delete_btn:hover, .modal_6 .modal_main .modal_options .modal_delete_btn:hover, .modal_7 .modal_main .modal_options .modal_delete_btn:hover {
+.modal_3 .modal_main .modal_options .modal_delete_btn:hover, .modal_6 .modal_main .modal_options .modal_delete_btn:hover, .modal_7 .modal_main .modal_options .modal_delete_btn:hover, .modal_8 .modal_main .modal_options .modal_delete_btn:hover {
   -webkit-box-shadow: 0 0 10px #555;
           box-shadow: 0 0 10px #555;
 }
 
-.modal_3 .modal_main .modal_options .fas, .modal_6 .modal_main .modal_options .fas, .modal_7 .modal_main .modal_options .fas {
+.modal_3 .modal_main .modal_options .fas, .modal_6 .modal_main .modal_options .fas, .modal_7 .modal_main .modal_options .fas, .modal_8 .modal_main .modal_options .fas {
   margin-left: 5px;
 }
 
@@ -349,10 +349,12 @@
 }
 
 .admin_panel .main_section {
+  display: -ms-grid;
+  display: grid;
   grid-area: main_section;
       grid-template-areas: 'admin_users_main .';
-  -ms-grid-columns: 1fr 40%;
-      grid-template-columns: 1fr 40%;
+  -ms-grid-columns: 60% 1fr;
+      grid-template-columns: 60% 1fr;
   grid-gap: 10px;
 }
 
@@ -365,7 +367,7 @@
   -webkit-box-shadow: 0px 0px 10px #d8d8d8;
           box-shadow: 0px 0px 10px #d8d8d8;
   border: 1px solid rgba(212, 212, 212, 0.514);
-  height: 400px;
+  max-height: 400px;
   color: #555;
 }
 
@@ -432,8 +434,12 @@
   margin-right: 15px;
 }
 
-.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td i, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th i {
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .label_main, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .label_main {
   cursor: pointer;
+}
+
+.admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .r_admin_btn, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .r_admin_btn {
+  color: #2ab42a;
 }
 
 .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr td .new_password, .admin_panel .main_section .admin_users_main .admin_users_content .admin_users_table tr th .new_password {

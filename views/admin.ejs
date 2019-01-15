@@ -32,7 +32,7 @@
             <%- include('./modals/confirm_reset', locals) %>
 
             <!-- LABELS -->
-            <%- include('./labels/delete', locals) %>
+            <%- include('./labels/label', locals) %>
 
             <!-- ADMIN MAIN -->
             <div class="admin_panel">
@@ -44,51 +44,59 @@
                 <div class="main_section">
 
                     <!-- ################## ADD YOUR CODE HERE ################## -->
-                    <% if (user.admin === "false") { %>
-                        <p>You do not have access to this page</p>
-                    <% } else { %>
-                        <div class="admin_users_main">
-                            <div class="admin_users_header">
-                                <p>All Users</p>
-                            </div>
-                            <div class="admin_users_content">
-                                <table class="admin_users_table">
-                                    <tr>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Admin</th>
-                                        <th>Notes</th>
-                                        <th>Options</th>
-                                    </tr>
-                                    <% for (let i = 0; i < allUsers.length; i++){ %>
-                                        <tr class="table_row" data-id="<%= allUsers[i].id %>">
-                                            <td><%= allUsers[i].username %></td>
-                                            <td><%= allUsers[i].email %></td>
-                                            <% if (allUsers[i].admin == "false"){ %>
-                                                <td class="isAdmin"><i class="fas fa-times"></i></td>
-                                            <% } else { %>
-                                                <td class="isAdmin"><i class="fas fa-check"></i></td>
-                                            <% } %>
-                                            <% for (let i3 = 0; i3 < notes.length; i3++){ %>
-                                                <% if (allUsers[i].username === notes[i3].username) { %>
-                                                    <% var notesLength = notes.length %>
-                                                <% } %>
-                                            <% } %>
-                                            <td><%= notesLength %></td>
-                                            <td>
-                                                <span class="new_password first_btn label_main" data-label="label_2">
-                                                    <i data-id="<%= allUsers[i].id %>" data-modal="modal_7" class="fas fa-unlock new_password_btn modal_btn"></i>
-                                                </span>
-                                                <span class="remove_user label_main"  data-label="label_1">
-                                                    <i data-id="<%= allUsers[i].id %>" data-modal="modal_6" class="fas fa-trash-alt dlt_user_btn modal_btn"></i>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    <% } %>
-                                </table>
-                            </div>
+                    <div class="admin_users_main">
+                        <div class="admin_users_header">
+                            <p>All Users</p>
                         </div>
-                    <% } %>
+                        <div class="admin_users_content">
+                            <table class="admin_users_table">
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Admin</th>
+                                    <th>Tasks</th>
+                                    <th>Options</th>
+                                </tr>
+                                <% for (let i = 0; i < allUsers.length; i++){ %>
+                                    <tr class="table_row" data-id="<%= allUsers[i].id %>">
+                                        <td><%= allUsers[i].username %></td>
+                                        <td><%= allUsers[i].email %></td>
+                                        <% if (allUsers[i].admin == "false"){ %>
+                                        <td class="isAdmin"><i class="fas fa-times"></i></td>
+                                        <% } else { %>
+                                        <td class="isAdmin"><i class="fas fa-check"></i></td>
+                                        <% } %>
+                                        <% var allnotes = [] %>
+                                        <% for (let i2 = 0; i2< notes.length; i2++){ %>
+                                            <% if (notes[i2].username == allUsers[i].username){ %>
+                                                <% allnotes.push(notes[i2].note) %>
+                                            <% } %>
+                                        <% } %>
+                                        <td><%= allnotes.length %></td>
+                                        <td>
+                                            <% if (allUsers[i].admin == "false"){ %>
+                                                <span class="first_btn r_admin_btn label_main modal_btn" data-id="<%= allUsers[i].id %>" data-modal="modal_8" data-label="label_6"><i class="fas fa-level-up-alt"></i></span>
+                                            <% } else { %>
+                                                <span class="first_btn r_admin_btn label_main" data-label="label_7"><i class="fas fa-level-down-alt"></i></span>
+                                            <% } %>
+                                            <span class="new_password first_btn label_main" data-label="label_2">
+                                                <i data-id="<%= allUsers[i].id %>" data-modal="modal_7" class="fas fa-unlock new_password_btn modal_btn"></i>
+                                            </span>
+                                            <span class="remove_user label_main"  data-label="label_1">
+                                                <i data-id="<%= allUsers[i].id %>" data-modal="modal_6" class="fas fa-trash-alt dlt_user_btn modal_btn"></i>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- <div class="admin_test_main">
+                        <div class="admin_test_header">
+                            <p>Test</p>
+                        </div>
+                    </div> -->
 
                 </div>
 
